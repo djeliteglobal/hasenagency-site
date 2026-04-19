@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,1286 +8,1087 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
     <meta property="og:title" content="Hasen Agency | AI Websites & Automations">
     <meta property="og:description" content="We Build Websites, AI Agents & Automations That Work While You Sleep">
-    <meta property="og:image" content="https://i.imgur.com/gradient-preview.jpg">
     <meta property="og:type" content="website">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        
         :root {
-            --bg: #0a0a0a;
+            --bg-color: #0a0a0a;
             --surface: #141414;
-            --border: rgba(255,255,255,0.06);
-            --accent: #7c3aed;
-            --accent2: #a855f7;
-            --cyan: #06b6d4;
-            --text: #fafafa;
-            --text2: #a1a1aa;
+            --border: rgba(255, 255, 255, 0.06);
+            --primary: #7c3aed;
+            --primary-light: #a855f7;
+            --secondary: #06b6d4;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
         }
-        
-        html { scroll-behavior: smooth; }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
+
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(124, 58, 237, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Layout & Utilities */
+        .container {
+            max-w-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .max-w-1200 { max-width: 1200px; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+        .text-center { text-align: center; }
         
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
-        
-        h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
-        
-        a { color: inherit; text-decoration: none; }
-        
-        /* ===== NAVBAR ===== */
-        .navbar {
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        /* Navbar */
+        nav {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            width: 100%;
+            z-index: 100;
             transition: all 0.3s ease;
             border-bottom: 1px solid transparent;
         }
-        
-        .navbar.scrolled {
-            background: rgba(10,10,10,0.8);
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
-        
-        .nav-logo {
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
             font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.25rem;
+            gap: 6px;
+            letter-spacing: -0.5px;
         }
-        
-        .nav-logo .dot {
+        .logo-dot {
             width: 8px;
             height: 8px;
-            background: var(--accent);
+            background: var(--primary);
             border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent);
+            display: inline-block;
+            box-shadow: 0 0 10px var(--primary);
         }
-        
         .nav-links {
             display: flex;
+            gap: 32px;
             align-items: center;
-            gap: 2rem;
         }
-        
         .nav-links a {
-            color: var(--text2);
-            font-size: 0.9rem;
-            transition: color 0.2s;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
         }
-        
-        .nav-links a:hover { color: var(--text); }
-        
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
+            padding: 12px 24px;
+            border-radius: 8px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
             border: none;
-            min-height: 44px;
-            min-width: 44px;
+            outline: none;
         }
-        
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
-            box-shadow: 0 0 20px rgba(124,58,237,0.3);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
         }
-        
-        .btn-primary::before {
+        .btn-primary::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: shimmer 3s infinite;
+            top: -50%;
+            left: -60%;
+            width: 40%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-20deg);
+            animation: shimmer 3s infinite linear;
         }
-        
         @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
+            0% { left: -60%; }
+            100% { left: 150%; }
         }
-        
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 40px rgba(124,58,237,0.5);
+            box-shadow: 0 6px 25px rgba(124, 58, 237, 0.6);
         }
-        
         .btn-glass {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
             border: 1px solid var(--border);
-            color: var(--text);
             backdrop-filter: blur(10px);
         }
-        
         .btn-glass:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
-        
-        .nav-cta { display: none; }
-        
-        @media (min-width: 768px) {
-            .nav-cta { display: inline-flex; }
-            .nav-links { gap: 2.5rem; }
-        }
-        
-        .mobile-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-        }
-        
-        .mobile-toggle span {
-            width: 24px;
-            height: 2px;
-            background: var(--text);
-            transition: all 0.3s;
-        }
-        
-        @media (min-width: 768px) {
-            .mobile-toggle { display: none; }
-        }
-        
-        /* ===== HERO ===== */
+
+        /* Hero */
         .hero {
+            position: relative;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding-top: 80px;
             text-align: center;
-            padding: 6rem 1.5rem 4rem;
-            position: relative;
             overflow: hidden;
         }
-        
-        /* Noise texture */
-        .hero::before {
-            content: '';
+        .noise {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             opacity: 0.03;
+            z-index: 1;
             pointer-events: none;
-            z-index: 0;
         }
-        
-        /* Aurora background */
         .aurora {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
+            inset: 0;
             z-index: 0;
+            overflow: hidden;
+            mask-image: radial-gradient(ellipse at top, black 40%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at top, black 40%, transparent 70%);
         }
-        
-        .aurora-blob {
+        .auroraBlob1, .auroraBlob2 {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: aurora 20s ease-in-out infinite;
+            filter: blur(100px);
+            animation: drift 20s infinite ease-in-out alternate;
+            opacity: 0.5;
         }
-        
-        .aurora-blob:nth-child(1) {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--accent), transparent);
-            top: -200px;
-            left: -100px;
+        .auroraBlob1 {
+            top: -10%; left: 20%;
+            width: 50vw; height: 50vw;
+            background: var(--primary);
             animation-delay: 0s;
         }
-        
-        .aurora-blob:nth-child(2) {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--cyan), transparent);
-            bottom: -150px;
-            right: -100px;
-            animation-delay: -7s;
+        .auroraBlob2 {
+            top: 20%; right: 10%;
+            width: 40vw; height: 40vw;
+            background: var(--secondary);
+            animation-delay: -5s;
         }
-        
-        .aurora-blob:nth-child(3) {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--accent2), transparent);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-delay: -14s;
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(5%, 5%) scale(1.1); }
+            100% { transform: translate(-5%, 10%) scale(0.9); }
         }
-        
-        @keyframes aurora {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(50px, -30px) scale(1.1); }
-            50% { transform: translate(-30px, 50px) scale(0.95); }
-            75% { transform: translate(-50px, -20px) scale(1.05); }
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            z-index: 0;
+            transform: perspective(1000px) rotateX(60deg) scale(2);
+            transform-origin: bottom center;
+            opacity: 0.3;
         }
-        
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 10;
             max-width: 900px;
+            padding: 0 24px;
         }
-        
-        .hero-badge {
+        .badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            border-radius: 9999px;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 100px;
+            color: var(--primary-light);
             font-size: 0.85rem;
-            color: var(--text2);
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            animation: pulse-glow 3s ease-in-out infinite;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: pulse-glow 3s infinite alternate;
         }
-        
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 10px rgba(124,58,237,0.1); }
-            50% { box-shadow: 0 0 20px rgba(124,58,237,0.3); }
+            0% { box-shadow: 0 0 0 rgba(124, 58, 237, 0); }
+            100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.4); }
         }
-        
         .hero h1 {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
         }
-        
-        .hero h1 .gradient-text {
-            background: linear-gradient(135deg, var(--accent), var(--accent2), var(--cyan));
+        .gradient-text {
+            background: linear-gradient(to right, #fff, var(--primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
-        .hero-subtitle {
+        .hero p {
             font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text2);
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 40px auto;
         }
-        
-        .hero-ctas {
+        .hero-btns {
             display: flex;
-            gap: 1rem;
+            gap: 16px;
             justify-content: center;
-            flex-wrap: wrap;
         }
-        
-        /* Floating grid */
-        .floating-grid {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 300px;
-            background-image: 
-                linear-gradient(rgba(124,58,237,0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(124,58,237,0.1) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
-            -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
-            transform: perspective(500px) rotateX(60deg);
-            transform-origin: bottom;
-            z-index: 0;
-        }
-        
-        /* ===== SOCIAL PROOF ===== */
-        .social-proof {
-            padding: 3rem 0;
+
+        /* Marquee */
+        .marquee-section {
+            padding: 40px 0;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
+            background: rgba(0,0,0,0.3);
             overflow: hidden;
-        }
-        
-        .social-proof p {
-            text-align: center;
-            color: var(--text2);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .marquee {
-            display: flex;
-            gap: 3rem;
-            animation: marquee 30s linear infinite;
-            width: max-content;
-        }
-        
-        .marquee-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text2);
-            font-size: 1.1rem;
             white-space: nowrap;
-            opacity: 0.6;
         }
-        
-        @keyframes marquee {
+        .marquee-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .marquee {
+            display: inline-block;
+            animation: scroll 40s linear infinite;
+        }
+        .marquee span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.4);
+            font-size: 1.25rem;
+            margin-right: 60px;
+        }
+        @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
-        
-        /* ===== SERVICES BENTO ===== */
-        .services {
-            padding: 6rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-header {
+
+        /* Bento Grid */
+        .section-title {
             text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-header h2 {
             font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 1rem;
+            margin-bottom: 16px;
         }
-        
-        .section-header p {
-            color: var(--text2);
-            max-width: 500px;
-            margin: 0 auto;
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 64px;
+            font-size: 1.1rem;
         }
         
         .bento-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        
-        @media (min-width: 768px) {
-            .bento-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        .bento-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .bento-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 40px rgba(124,58,237,0.15);
-            border-color: rgba(124,58,237,0.3);
-        }
-        
-        .bento-card.span-2 {
-            grid-column: span 1;
-        }
-        
-        @media (min-width: 768px) {
-            .bento-card.span-2 { grid-column: span 2; }
-        }
-        
-        .bento-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .bento-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .bento-card p {
-            color: var(--text2);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        .chat-animation {
-            margin-top: 1rem;
-            padding: 0.75rem 1rem;
-            background: rgba(124,58,237,0.1);
-            border-radius: 1rem;
-            border-bottom-left-radius: 0.25rem;
-            display: inline-block;
-            font-size: 0.9rem;
-            color: var(--accent2);
-        }
-        
-        .chat-animation .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background: var(--accent2);
-            margin-left: 2px;
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        
-        .counter-card {
-            text-align: center;
-            padding: 2.5rem 2rem;
-        }
-        
-        .counter-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent), var(--cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .browser-mockup {
-            margin-top: 1.5rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 0.75rem;
-            overflow: hidden;
-        }
-        
-        .browser-bar {
-            display: flex;
-            gap: 6px;
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .browser-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border);
-        }
-        
-        .browser-content {
-            padding: 1.5rem;
-            min-height: 120px;
-            background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.1));
-        }
-        
-        /* ===== HOW IT WORKS ===== */
-        .how-it-works {
-            padding: 6rem 1.5rem;
-            background: var(--surface);
-        }
-        
-        .steps {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-            position: relative;
-        }
-        
-        @media (min-width: 768px) {
-            .steps {
-                flex-direction: row;
-                gap: 0;
-            }
-            
-            .steps::before {
-                content: '';
-                position: absolute;
-                top: 60px;
-                left: 15%;
-                right: 15%;
-                height: 2px;
-                background: linear-gradient(90deg, var(--accent), var(--cyan));
-                animation: flow-line 3s ease-in-out infinite;
-            }
-            
-            @keyframes flow-line {
-                0%, 100% { opacity: 0.3; }
-                50% { opacity: 1; }
-            }
-        }
-        
-        .step {
-            flex: 1;
-            text-align: center;
-            padding: 0 1rem;
-        }
-        
-        .step-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 4rem;
-            font-weight: 800;
-            -webkit-text-stroke: 2px var(--accent);
-            color: transparent;
-            margin-bottom: 1rem;
-            line-height: 1;
-        }
-        
-        .step h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .step p {
-            color: var(--text2);
-            font-size: 0.95rem;
-        }
-        
-        /* ===== RESULTS / METRICS ===== */
-        .metrics {
-            padding: 6rem 1.5rem;
-            position: relative;
-        }
-        
-        .metrics::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(124,58,237,0.1), transparent);
-            pointer-events: none;
-        }
-        
-        .metrics-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-        
-        @media (min-width: 768px) {
-            .metrics-grid { grid-template-columns: repeat(4, 1fr); }
-        }
-        
-        .metric {
-            text-align: center;
-            padding: 1.5rem;
-        }
-        
-        .metric-value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--text), var(--accent2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-        
-        .metric-label {
-            color: var(--text2);
-            font-size: 0.9rem;
-        }
-        
-        /* ===== TESTIMONIALS ===== */
-        .testimonials {
-            padding: 6rem 1.5rem;
-            background: var(--surface);
-        }
-        
-        .testimonials-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
         }
-        
-        @media (min-width: 768px) {
-            .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+        .bento-card {
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
         }
-        
-        .testimonial-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .testimonial-card:hover {
+        .bento-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 10px 40px rgba(124,58,237,0.1);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.1);
+            border-color: rgba(124, 58, 237, 0.3);
         }
-        
-        .testimonial-stars {
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(124, 58, 237, 0.08), transparent 40%);
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        
-        .testimonial-quote {
-            font-style: italic;
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
+        .bento-card:hover::before {
+            opacity: 1;
         }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+        .bento-content {
+            position: relative;
+            z-index: 10;
         }
-        
-        .testimonial-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--cyan));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
+        .bento-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
         }
-        
-        .testimonial-name {
-            font-weight: 600;
+        .bento-title {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        .bento-desc {
+            color: var(--text-secondary);
             font-size: 0.95rem;
         }
         
-        .testimonial-role {
-            color: var(--text2);
-            font-size: 0.85rem;
-        }
+        /* Bento Card Specifically */
+        .card-1 { grid-column: span 2; min-height: 400px; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-2 { grid-column: span 1; }
+        .card-3 { grid-column: span 1; }
+        .card-4 { grid-column: span 1; }
+        .card-5 { grid-column: span 1; }
         
-        /* ===== PRICING ===== */
-        .pricing {
-            padding: 6rem 1.5rem;
-        }
-        
-        .pricing-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        
-        @media (min-width: 768px) {
-            .pricing-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        
-        .pricing-card {
-            background: rgba(255,255,255,0.03);
+        .mockup-window {
+            background: #111;
             border: 1px solid var(--border);
-            border-radius: 1.5rem;
-            padding: 2.5rem 2rem;
-            transition: all 0.3s ease;
-            position: relative;
+            border-radius: 8px;
+            margin-top: 24px;
+            padding: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: perspective(1000px) rotateX(15deg) rotateY(-10deg);
+            transition: transform 0.5s ease;
         }
-        
-        .pricing-card:hover {
-            transform: translateY(-4px);
+        .card-1:hover .mockup-window {
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
         }
-        
-        .pricing-card.featured {
-            border-color: var(--accent);
-            box-shadow: 0 0 40px rgba(124,58,237,0.15);
-        }
-        
-        .pricing-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--accent), var(--accent2));
-            padding: 0.25rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        
-        .pricing-name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        
-        .pricing-price {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.25rem;
-        }
-        
-        .pricing-price span {
-            font-size: 1rem;
-            color: var(--text2);
-            font-weight: 400;
-        }
-        
-        .pricing-desc {
-            color: var(--text2);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-        
-        .pricing-features li {
-            padding: 0.5rem 0;
-            color: var(--text2);
-            font-size: 0.9rem;
+        .mockup-header {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            gap: 6px;
+            margin-bottom: 12px;
         }
+        .mockup-dot { width: 10px; height: 10px; border-radius: 50%; background: #333; }
+        .mockup-dot:nth-child(1) { background: #ff5f56; }
+        .mockup-dot:nth-child(2) { background: #ffbd2e; }
+        .mockup-dot:nth-child(3) { background: #27c93f; }
+        .mockup-body { height: 120px; background: #1a1a1a; border-radius: 4px; padding: 12px;}
+        .mock-line { height: 8px; background: #333; border-radius: 4px; margin-bottom: 8px; width: 100%;}
+        .mock-line.short { width: 60%; }
         
-        .pricing-features li::before {
-            content: '✓';
-            color: var(--accent);
-            font-weight: 700;
-        }
-        
-        /* ===== FINAL CTA ===== */
-        .final-cta {
-            padding: 8rem 1.5rem;
-            text-align: center;
+        /* Chat bubble animation */
+        .chat-bubble {
+            background: var(--primary);
+            padding: 12px 16px;
+            border-radius: 16px 16px 16px 0;
+            display: inline-block;
+            font-size: 0.85rem;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.2);
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(6,182,212,0.1));
         }
-        
-        .final-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at center, rgba(124,58,237,0.2), transparent 70%);
-            pointer-events: none;
+        .typewriter:after {
+            content: '|';
+            animation: blink 1s step-end infinite;
         }
-        
-        .final-cta-content {
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* How it works */
+        .how-bg {
+            background: linear-gradient(to bottom, transparent, rgba(124, 58, 237, 0.05), transparent);
+        }
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
             position: relative;
-            z-index: 1;
-            max-width: 600px;
-            margin: 0 auto;
+        }
+        .step-card {
+            position: relative;
+        }
+        .step-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+            margin-bottom: 16px;
+            transition: all 0.3s;
+        }
+        .step-card:hover .step-number {
+            -webkit-text-stroke: 1px var(--primary);
+            text-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+        }
+        .connecting-line {
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: -1;
+        }
+        .connecting-line-fill {
+            position: absolute;
+            top: 0; left: 0; height: 100%; width: 0%;
+            background: linear-gradient(90deg, transparent, var(--primary), var(--secondary));
+            transition: width 1s ease-out;
         }
         
-        .final-cta h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 1rem;
+        /* Results */
+        .results-section {
+            position: relative;
+            background: radial-gradient(circle at center, rgba(124, 58, 237, 0.1) 0%, transparent 60%);
         }
-        
-        .final-cta p {
-            color: var(--text2);
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-        }
-        
-        .final-cta .btn-primary {
-            font-size: 1.1rem;
-            padding: 1rem 2.5rem;
-        }
-        
-        .final-cta-sub {
-            margin-top: 1.5rem;
-            color: var(--text2);
-            font-size: 0.9rem;
-        }
-        
-        /* ===== FOOTER ===== */
-        .footer {
-            padding: 3rem 1.5rem;
-            border-top: 1px solid var(--border);
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
             text-align: center;
         }
-        
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .footer-logo {
+        .counter-val {
+            font-size: 3.5rem;
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
+            font-weight: 800;
+            background: linear-gradient(to bottom right, #fff, #999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
         }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-links a {
-            color: var(--text2);
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-        
-        .footer-links a:hover { color: var(--text); }
-        
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-socials a {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            color: var(--text2);
-            transition: all 0.2s;
-            font-size: 1.1rem;
-        }
-        
-        .footer-socials a:hover {
-            color: var(--text);
-            border-color: var(--accent);
-            background: rgba(124,58,237,0.1);
-        }
-        
-        .footer-copy {
-            color: var(--text2);
+        .counter-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             font-size: 0.85rem;
         }
+
+        /* Testimonials */
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .testi-card {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px;
+        }
+        .quote {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #ddd;
+            margin-bottom: 24px;
+        }
+        .stars { color: var(--primary-light); font-size: 1.2rem; margin-bottom: 16px; }
+        .author { display: flex; align-items: center; gap: 12px; }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background: #333; }
+        .author-name { font-weight: 600; font-size: 0.95rem; }
+        .author-title { color: var(--text-secondary); font-size: 0.85rem; }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            align-items: center;
+        }
+        .pricing-card {
+            padding: 40px 32px;
+            position: relative;
+        }
+        .pricing-card.popular {
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
+            transform: scale(1.05);
+            background: rgba(20, 20, 20, 0.8);
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .price-title { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 16px; }
+        .price-amount { font-size: 3rem; font-family: 'Space Grotesk', sans-serif; font-weight: 800; margin-bottom: 24px; }
+        .price-amount span { font-size: 1rem; color: var(--text-secondary); font-weight: 500; }
+        .feature-list { list-style: none; margin-bottom: 32px; }
+        .feature-list li { margin-bottom: 12px; color: #ccc; font-size: 0.95rem; display: flex; gap: 8px; }
+        .feature-list li::before { content: '✓'; color: var(--primary-light); font-weight: bold; }
         
-        /* ===== SCROLL ANIMATIONS ===== */
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, rgba(124,58,237,0.2) 0%, rgba(6,182,212,0.1) 100%);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 100px 24px;
+            text-align: center;
+        }
+        .final-cta h2 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 16px; }
+
+        /* Footer */
+        footer {
+            padding: 40px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .social-icons { display: flex; gap: 16px; }
+        .social-icons a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
+        .social-icons a:hover { color: var(--text-primary); }
+
+        /* Global Animation Classes */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        .reveal.visible {
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
         
-        .reveal-stagger > * {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        /* Responsive */
+        @media (max-width: 992px) {
+            .bento-grid, .pricing-grid, .testi-grid, .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .card-1 { grid-column: span 2; }
+            .pricing-card.popular { transform: scale(1); }
+            .step-grid { grid-template-columns: 1fr; gap: 30px; }
+            .connecting-line {
+                top: 0; left: 40px; width: 2px; height: 100%; right: auto;
+            }
+            .connecting-line-fill { width: 100%; height: 0%; transition: height 1s; }
         }
-        
-        .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.visible > *:nth-child(2) { transition-delay: 100ms; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.visible > *:nth-child(3) { transition-delay: 200ms; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.visible > *:nth-child(4) { transition-delay: 300ms; opacity: 1; transform: translateY(0); }
-        .reveal-stagger.visible > *:nth-child(5) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
         
         @media (max-width: 768px) {
-            .navbar { padding: 1rem; }
-            .hero { padding: 5rem 1rem 3rem; }
-            .services, .metrics, .testimonials, .pricing { padding: 4rem 1rem; }
-            .how-it-works { padding: 4rem 1rem; }
-            .final-cta { padding: 5rem 1rem; }
+            .bento-grid, .pricing-grid, .testi-grid, .results-grid {
+                grid-template-columns: 1fr;
+            }
+            .card-1 { grid-column: span 1; }
+            .nav-links a { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            footer { flex-direction: column; gap: 20px; text-align: center; }
+            .btn { width: 100%; margin-bottom: 10px; }
+            .hero-btns { flex-direction: column; gap: 0;}
         }
+
     </style>
 </head>
 <body>
-    <!-- NAVBAR -->
-    <nav class="navbar" id="navbar">
-        <a href="#" class="nav-logo">Hasen Agency<span class="dot"></span></a>
-        <div class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#results">Results</a>
-            <a href="#about">About</a>
-            <a href="#contact" class="btn btn-primary nav-cta">Get Started</a>
+
+    <!-- Noise Texture -->
+    <div class="noise"></div>
+
+    <!-- Navbar -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                Hasen Agency <span class="logo-dot"></span>
+            </a>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#results">Results</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+            <a href="#contact" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem;">Get Started</a>
         </div>
-        <button class="mobile-toggle" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
     </nav>
 
-    <!-- HERO -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="aurora">
-            <div class="aurora-blob"></div>
-            <div class="aurora-blob"></div>
-            <div class="aurora-blob"></div>
+            <div class="auroraBlob1"></div>
+            <div class="auroraBlob2"></div>
         </div>
-        <div class="floating-grid"></div>
-        <div class="hero-content">
-            <div class="hero-badge reveal">🤖 Powered by AI</div>
-            <h1 class="reveal">We Build Websites, <span class="gradient-text">AI Agents & Automations</span> That Work While You Sleep</h1>
-            <p class="hero-subtitle reveal">Hasen Agency helps businesses scale with custom websites, intelligent chatbots, and workflow automations — no tech skills required.</p>
-            <div class="hero-ctas reveal">
+        <div class="grid-bg"></div>
+        
+        <div class="hero-content reveal">
+            <div class="badge">
+                🤖 Powered by AI
+            </div>
+            <h1>We Build Websites, <span class="gradient-text">AI Agents & Automations</span> That Work While You Sleep</h1>
+            <p>Hasen Agency helps businesses scale with custom websites, intelligent chatbots, and workflow automations — no tech skills required.</p>
+            <div class="hero-btns">
                 <a href="#services" class="btn btn-primary">See Our Work</a>
                 <a href="#contact" class="btn btn-glass">Book a Call</a>
             </div>
         </div>
     </section>
 
-    <!-- SOCIAL PROOF -->
-    <section class="social-proof">
-        <p>Trusted by businesses across</p>
-        <div style="overflow: hidden;">
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-text">Trusted by businesses across industries</div>
+        <div class="marquee-wrapper" style="overflow: hidden; width: 100%;">
             <div class="marquee">
-                <span class="marquee-item">🦷 Dentists</span>
-                <span class="marquee-item">🍽️ Restaurants</span>
-                <span class="marquee-item">💪 Gyms</span>
-                <span class="marquee-item">🏠 Real Estate</span>
-                <span class="marquee-item">❄️ HVAC</span>
-                <span class="marquee-item">🚗 Auto Shops</span>
-                <span class="marquee-item">💇 Salons</span>
-                <span class="marquee-item">🐾 Vets</span>
-                <span class="marquee-item">🦷 Dentists</span>
-                <span class="marquee-item">🍽️ Restaurants</span>
-                <span class="marquee-item">💪 Gyms</span>
-                <span class="marquee-item">🏠 Real Estate</span>
-                <span class="marquee-item">❄️ HVAC</span>
-                <span class="marquee-item">🚗 Auto Shops</span>
-                <span class="marquee-item">💇 Salons</span>
-                <span class="marquee-item">🐾 Vets</span>
+                <!-- Repeated twice for infinite effect -->
+                <span>🦷 Dental Clinics</span>
+                <span>🏠 Real Estate</span>
+                <span>🏋️ Gyms & Fitness</span>
+                <span>🛠️ HVAC Services</span>
+                <span>🍽️ Restaurants</span>
+                <span>⚖️ Law Firms</span>
+                <span>🦷 Dental Clinics</span>
+                <span>🏠 Real Estate</span>
+                <span>🏋️ Gyms & Fitness</span>
+                <span>🛠️ HVAC Services</span>
+                <span>🍽️ Restaurants</span>
+                <span>⚖️ Law Firms</span>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- SERVICES BENTO GRID -->
-    <section class="services" id="services">
-        <div class="section-header reveal">
-            <h2>What We Build</h2>
-            <p>Everything you need to dominate your market — all in one place.</p>
-        </div>
-        <div class="bento-grid reveal-stagger">
-            <div class="bento-card span-2">
-                <div class="bento-icon">🌐</div>
-                <h3>Custom Websites</h3>
-                <p>Stunning, high-converting websites built for your brand. Mobile-first, SEO-optimized, and designed to turn visitors into customers.</p>
-                <div class="browser-mockup">
-                    <div class="browser-bar">
-                        <div class="browser-dot"></div>
-                        <div class="browser-dot"></div>
-                        <div class="browser-dot"></div>
+    <!-- Services Bento Grid -->
+    <section id="services" class="py-24 px-6 relative">
+        <div class="max-w-1200 mx-auto">
+            <h2 class="section-title reveal">Built for Scale</h2>
+            <p class="section-subtitle reveal">Everything you need to automate your growth</p>
+            
+            <div class="bento-grid">
+                <!-- Card 1 -->
+                <div class="bento-card glass card-1 reveal" style="transition-delay: 0.1s">
+                    <div class="bento-content">
+                        <h3 class="bento-title">Custom Websites</h3>
+                        <p class="bento-desc max-w-[400px]">We build lightning-fast, conversion-optimized websites that turn visitors into paying clients. Built without code bloat, ranking higher on Google.</p>
                     </div>
-                    <div class="browser-content"></div>
+                    <div class="mockup-window">
+                        <div class="mockup-header">
+                            <div class="mockup-dot"></div>
+                            <div class="mockup-dot"></div>
+                            <div class="mockup-dot"></div>
+                        </div>
+                        <div class="mockup-body">
+                            <div class="mock-line"></div>
+                            <div class="mock-line"></div>
+                            <div class="mock-line short"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bento-card glass card-2 reveal" style="transition-delay: 0.2s">
+                    <div class="bento-content">
+                        <div class="bento-icon">💬</div>
+                        <h3 class="bento-title">AI Chatbots</h3>
+                        <p class="bento-desc">Smart agents that qualify leads, schedule appointments, and provide 24/7 support.</p>
+                        <div class="chat-bubble">
+                            <span id="chat-text"></span><span class="typewriter"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bento-card glass card-3 reveal" style="transition-delay: 0.3s">
+                    <div class="bento-content">
+                        <div class="bento-icon">⚡</div>
+                        <h3 class="bento-title">Workflow Automations</h3>
+                        <p class="bento-desc">Connect thousands of apps. Trigger emails, update spreadsheets, and alert your team automatically.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bento-card glass card-4 reveal" style="transition-delay: 0.4s">
+                    <div class="bento-content">
+                        <div class="bento-icon">📈</div>
+                        <h3 class="bento-title">Lead Generation</h3>
+                        <p class="bento-desc">Capture and nurture leads on autopilot.</p>
+                        <div style="margin-top: 16px; font-family: 'Space Grotesk'; font-size: 2rem; font-weight: 800; color: var(--primary-light);">
+                            <span class="counter" data-target="1000">0</span>+ <span style="font-size: 1rem; color: var(--text-secondary);">leads/mo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bento-card glass card-5 reveal" style="transition-delay: 0.5s">
+                    <div class="bento-content">
+                        <div class="bento-icon">🔗</div>
+                        <h3 class="bento-title">CRM Integration</h3>
+                        <p class="bento-desc">Connect your tools. Automate your follow-ups with HubSpot, Salesforce, or GoHighLevel seamlessly.</p>
+                    </div>
                 </div>
             </div>
-            <div class="bento-card">
-                <div class="bento-icon">💬</div>
-                <h3>AI Chatbots</h3>
-                <p>24/7 virtual assistants that know your business inside out.</p>
-                <div class="chat-animation" id="chat-anim">
-                    Hola! ¿En qué puedo ayud...<span class="cursor"></span>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="py-24 px-6 how-bg relative">
+        <div class="max-w-1200 mx-auto">
+            <h2 class="section-title reveal">How It Works</h2>
+            <p class="section-subtitle reveal">A streamlined process to get you automated fast.</p>
+            
+            <div class="step-grid reveal">
+                <div class="connecting-line"><div class="connecting-line-fill" id="flow-line"></div></div>
+                
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3 class="font-display" style="font-size: 1.25rem; margin-bottom: 8px;">Tell us your business</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">We learn your brand, goals, and audience to tailor the perfect solution.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3 class="font-display" style="font-size: 1.25rem; margin-bottom: 8px;">We build everything</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Website, AI agent, automations — done in days, not months.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3 class="font-display" style="font-size: 1.25rem; margin-bottom: 8px;">You get results</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Leads, bookings, and revenue on autopilot. Watch your business scale without the extra headcount.</p>
                 </div>
             </div>
-            <div class="bento-card">
-                <div class="bento-icon">⚡</div>
-                <h3>Workflow Automations</h3>
-                <p>Connect your tools. Automate repetitive tasks. Focus on what matters.</p>
-            </div>
-            <div class="bento-card counter-card">
-                <div class="counter-number" data-target="1000" data-suffix="+">0</div>
-                <h3>Leads Generated</h3>
-                <p>Per month on average</p>
-            </div>
-            <div class="bento-card">
-                <div class="bento-icon">🔗</div>
-                <h3>CRM Integration</h3>
-                <p>Connect your tools. Automate your follow-ups. Never lose a lead again.</p>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="py-24 px-6 results-section">
+        <div class="max-w-1200 mx-auto">
+            <div class="results-grid">
+                <div class="reveal" style="transition-delay: 0.1s">
+                    <div class="counter-val"><span class="counter" data-target="150">0</span>+</div>
+                    <div class="counter-label">Websites Delivered</div>
+                </div>
+                <div class="reveal" style="transition-delay: 0.2s">
+                    <div class="counter-val"><span class="counter" data-target="10">0</span>K+</div>
+                    <div class="counter-label">Leads Generated</div>
+                </div>
+                <div class="reveal" style="transition-delay: 0.3s">
+                    <div class="counter-val"><span class="counter" data-target="98">0</span>%</div>
+                    <div class="counter-label">Client Satisfaction</div>
+                </div>
+                <div class="reveal" style="transition-delay: 0.4s">
+                    <div class="counter-val"><span class="counter" data-target="48">0</span>hr</div>
+                    <div class="counter-label">Average Delivery</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="how-it-works" id="about">
-        <div class="section-header reveal">
-            <h2>How It Works</h2>
-            <p>From idea to launch in days, not months.</p>
-        </div>
-        <div class="steps reveal-stagger">
-            <div class="step">
-                <div class="step-number">01</div>
-                <h3>Tell Us Your Business</h3>
-                <p>We learn your brand, goals, and audience to create a strategy that converts.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">02</div>
-                <h3>We Build Everything</h3>
-                <p>Website, AI agent, automations — done in days, not months.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">03</div>
-                <h3>You Get Results</h3>
-                <p>Leads, bookings, and revenue on autopilot.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- METRICS -->
-    <section class="metrics" id="results">
-        <div class="section-header reveal">
-            <h2>Real Results</h2>
-            <p>Numbers don't lie.</p>
-        </div>
-        <div class="metrics-grid reveal-stagger">
-            <div class="metric">
-                <div class="metric-value" data-target="150" data-suffix="+">0</div>
-                <div class="metric-label">Websites Delivered</div>
-            </div>
-            <div class="metric">
-                <div class="metric-value" data-target="10" data-suffix="K+">0</div>
-                <div class="metric-label">Leads Generated</div>
-            </div>
-            <div class="metric">
-                <div class="metric-value" data-target="98" data-suffix="%">0</div>
-                <div class="metric-label">Client Satisfaction</div>
-            </div>
-            <div class="metric">
-                <div class="metric-value" data-target="48" data-suffix="hr">0</div>
-                <div class="metric-label">Avg Delivery Time</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="testimonials">
-        <div class="section-header reveal">
-            <h2>What Clients Say</h2>
-            <p>Don't take our word for it.</p>
-        </div>
-        <div class="testimonials-grid reveal-stagger">
-            <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-quote">"Hasen Agency transformed our online presence. We went from 5 calls a week to 25. The AI chatbot handles everything."</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">MR</div>
+    <!-- Testimonials -->
+    <section class="py-24 px-6 relative">
+        <div class="max-w-1200 mx-auto">
+            <h2 class="section-title reveal">Trusted by Leaders</h2>
+            <p class="section-subtitle reveal">Don't just take our word for it.</p>
+            
+            <div class="testi-grid">
+                <div class="testi-card glass reveal" style="transition-delay: 0.1s">
                     <div>
-                        <div class="testimonial-name">Mike Rodriguez</div>
-                        <div class="testimonial-role">Owner, Rodriguez Dental</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="quote">"Hasen Agency transformed how we handle inquiries. Our AI agent books 5x more consultations while we sleep. Insane ROI."</div>
+                    </div>
+                    <div class="author">
+                        <div class="avatar" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53)"></div>
+                        <div>
+                            <div class="author-name">Sarah Jenkins</div>
+                            <div class="author-title">Dental Clinic Owner</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-quote">"The automation they built saves us 20 hours a week. It's like having an extra employee that never sleeps."</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">SK</div>
+                
+                <div class="testi-card glass reveal" style="transition-delay: 0.2s">
                     <div>
-                        <div class="testimonial-name">Sarah Kim</div>
-                        <div class="testimonial-role">CEO, Kim HVAC Solutions</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="quote">"The premium feel of our new website combined with seamless CRM automation completely elevated our real estate brand."</div>
+                    </div>
+                    <div class="author">
+                        <div class="avatar" style="background: linear-gradient(135deg, #4facfe, #00f2fe)"></div>
+                        <div>
+                            <div class="author-name">Michael Chang</div>
+                            <div class="author-title">Real Estate Broker</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-quote">"Best investment we've made. Our website pays for itself every month with the leads it generates."</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">JT</div>
+                
+                <div class="testi-card glass reveal" style="transition-delay: 0.3s">
                     <div>
-                        <div class="testimonial-name">James Thompson</div>
-                        <div class="testimonial-role">Founder, Thompson Realty</div>
+                        <div class="stars">★★★★★</div>
+                        <div class="quote">"We fired our old answering service. The AI chatbot handles 100% of our after-hours HVAC emergencies flawlessly."</div>
+                    </div>
+                    <div class="author">
+                        <div class="avatar" style="background: linear-gradient(135deg, #43e97b, #38f9d7)"></div>
+                        <div>
+                            <div class="author-name">David O'Connor</div>
+                            <div class="author-title">HVAC Solutions CEO</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PRICING -->
-    <section class="pricing">
-        <div class="section-header reveal">
-            <h2>Simple Pricing</h2>
-            <p>No hidden fees. Cancel anytime.</p>
-        </div>
-        <div class="pricing-grid reveal-stagger">
-            <div class="pricing-card">
-                <div class="pricing-name">Starter</div>
-                <div class="pricing-price">$99<span>/mo</span></div>
-                <p class="pricing-desc">Perfect for small businesses getting started.</p>
-                <ul class="pricing-features">
-                    <li>Template website</li>
-                    <li>Basic AI chatbot</li>
-                    <li>Mobile responsive</li>
-                    <li>Email support</li>
-                </ul>
-                <a href="#contact" class="btn btn-glass" style="width:100%">Get Started</a>
+    <!-- Pricing -->
+    <section id="pricing" class="py-24 px-6">
+        <div class="max-w-1200 mx-auto">
+            <h2 class="section-title reveal">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle reveal">Invest in automation. Save on payroll.</p>
+            
+            <div class="pricing-grid">
+                <!-- Starter -->
+                <div class="pricing-card glass reveal" style="transition-delay: 0.1s">
+                    <h3 class="price-title font-display">Starter</h3>
+                    <div class="price-amount">$99<span>/mo</span></div>
+                    <ul class="feature-list">
+                        <li>Premium Template Website</li>
+                        <li>Basic Knowledge Base AI</li>
+                        <li>Contact Form Integration</li>
+                        <li>Standard Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-glass" style="width: 100%;">Choose Starter</a>
+                </div>
+                
+                <!-- Growth -->
+                <div class="pricing-card glass popular reveal" style="transition-delay: 0.2s">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3 class="price-title font-display text-white">Growth</h3>
+                    <div class="price-amount">$297<span>/mo</span></div>
+                    <ul class="feature-list">
+                        <li>Custom Designed Website</li>
+                        <li>Advanced Sales AI Agent</li>
+                        <li>Automated Lead Capture</li>
+                        <li>Basic CRM Integration</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Choose Growth</a>
+                </div>
+                
+                <!-- Enterprise -->
+                <div class="pricing-card glass reveal" style="transition-delay: 0.3s">
+                    <h3 class="price-title font-display">Enterprise</h3>
+                    <div class="price-amount">Custom</div>
+                    <ul class="feature-list">
+                        <li>Full Funnel Architecture</li>
+                        <li>Custom Automation Workflows</li>
+                        <li>Complex CRM/ERP Integration</li>
+                        <li>Dedicated Account Manager</li>
+                        <li>24/7 SLA Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-glass" style="width: 100%;">Contact Sales</a>
+                </div>
             </div>
-            <div class="pricing-card featured">
-                <div class="pricing-badge">Most Popular</div>
-                <div class="pricing-name">Growth</div>
-                <div class="pricing-price">$297<span>/mo</span></div>
-                <p class="pricing-desc">For businesses ready to scale.</p>
-                <ul class="pricing-features">
-                    <li>Custom website design</li>
-                    <li>AI agent with full training</li>
-                    <li>Lead capture system</li>
-                    <li>CRM integration</li>
-                    <li>Priority support</li>
-                </ul>
-                <a href="#contact" class="btn btn-primary" style="width:100%">Get Started</a>
-            </div>
-            <div class="pricing-card">
-                <div class="pricing-name">Enterprise</div>
-                <div class="pricing-price">Custom</div>
-                <p class="pricing-desc">For businesses that need it all.</p>
-                <ul class="pricing-features">
-                    <li>Full sales funnel</li>
-                    <li>Advanced automations</li>
-                    <li>Dedicated support</li>
-                    <li>Custom integrations</li>
-                    <li>Monthly strategy calls</li>
-                </ul>
-                <a href="#contact" class="btn btn-glass" style="width:100%">Contact Us</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section class="final-cta" id="contact">
-        <div class="final-cta-content reveal">
-            <h2>Ready to Automate Your Business?</h2>
-            <p>Let's build something that works while you sleep.</p>
-            <a href="mailto:hello@hasenagency.com" class="btn btn-primary">Start Your Project →</a>
-            <p class="final-cta-sub">Free consultation · No commitment · Response in 24hrs</p>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">Hasen Agency</div>
-            <div class="footer-links">
-                <a href="#services">Services</a>
-                <a href="#contact">Contact</a>
-                <a href="#">Privacy</a>
-            </div>
-            <div class="footer-socials">
-                <a href="#" aria-label="X">𝕏</a>
-                <a href="#" aria-label="Instagram">📷</a>
-                <a href="#" aria-label="LinkedIn">in</a>
-            </div>
-            <p class="footer-copy">© 2026 Hasen Agency. All rights reserved.</p>
+    <!-- Final CTA -->
+    <section id="contact" class="final-cta reveal">
+        <div class="max-w-1200 mx-auto">
+            <h2 class="font-display">Ready to Automate Your Business?</h2>
+            <p style="color: rgba(255,255,255,0.7); font-size: 1.25rem; margin-bottom: 40px; max-width: 600px; margin-inline: auto;">Let's build something that works while you sleep.</p>
+            <a href="mailto:hello@hasenagency.site" class="btn btn-primary" style="padding: 16px 40px; font-size: 1.1rem;">Start Your Project &rarr;</a>
+            <p style="color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-top: 24px;">Free consultation &middot; No commitment &middot; Response in 24hrs</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-copy" style="color: var(--text-secondary); font-size: 0.9rem;">
+            Hasen Agency &copy; 2026. All rights reserved.
+        </div>
+        <div class="social-icons">
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="#">Privacy</a>
+            <span style="color: var(--border);">|</span>
+            <a href="#">𝕏</a>
+            <a href="#">In</a>
+            <a href="#">Ig</a>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
 
-        // Scroll reveal
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
+        // Intersection Observer for reveal animations & counters
+        const revealElements = document.querySelectorAll('.reveal');
+        const counters = document.querySelectorAll('.counter');
+        const flowLine = document.getElementById('flow-line');
+        
+        let flowLineAnimated = false;
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.classList.add('active');
+                    
+                    // Trigger counters if they are inside the revealed element
+                    const targetCounters = entry.target.querySelectorAll('.counter');
+                    targetCounters.forEach(counter => {
+                        animateCounter(counter);
+                    });
+                    
+                    // Trigger counter if the reveal element itself is a counter container
+                    if(entry.target.querySelector('.counter')) {
+                        let c = entry.target.querySelector('.counter');
+                        if (!c.classList.contains('counted')) {
+                            animateCounter(c);
+                            c.classList.add('counted');
+                        }
+                    }
+
+                    // Trigger flow line specifically
+                    if (entry.target.classList.contains('step-grid') && !flowLineAnimated) {
+                        flowLineAnimated = true;
+                        if(window.innerWidth > 992) {
+                            flowLine.style.width = '100%';
+                        } else {
+                            flowLine.style.height = '100%';
+                        }
+                    }
+
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
+        revealElements.forEach(el => observer.observe(el));
 
-        // Counter animation
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.dataset.counted) {
-                    entry.target.dataset.counted = 'true';
-                    const target = parseInt(entry.target.dataset.target);
-                    const suffix = entry.target.dataset.suffix || '';
-                    const duration = 2000;
-                    const start = performance.now();
-                    
-                    const animate = (now) => {
-                        const progress = Math.min((now - start) / duration, 1);
-                        const eased = 1 - Math.pow(1 - progress, 3);
-                        const current = Math.floor(eased * target);
-                        entry.target.textContent = current + suffix;
-                        if (progress < 1) requestAnimationFrame(animate);
-                    };
-                    requestAnimationFrame(animate);
+        // Counter Animation
+        function animateCounter(counter) {
+            const target = +counter.getAttribute('data-target');
+            const duration = 2000;
+            const stepTime = Math.abs(Math.floor(duration / target));
+            let current = 0;
+            
+            // ease out cubic
+            const easeOut = t => 1 - Math.pow(1 - t, 3);
+            let startTime = null;
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+                const percentage = Math.min(progress / duration, 1);
+                
+                current = Math.floor(target * easeOut(percentage));
+                counter.innerText = current;
+
+                if (percentage < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    counter.innerText = target;
                 }
-            });
-        }, { threshold: 0.5 });
+            }
+            window.requestAnimationFrame(step);
+        }
 
-        document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
-
-        // Chat animation
-        const chatEl = document.getElementById('chat-anim');
-        const chatText = 'Hola! ¿En qué puedo ayudarte hoy? 😊';
-        let chatIndex = 0;
+        // Chatbot typing animation
+        const chatText = document.getElementById('chat-text');
+        const textToType = "Hola! ¿En qué puedo ayudarte?";
+        let i = 0;
         
-        function typeChat() {
-            if (chatIndex <= chatText.length) {
-                chatEl.innerHTML = chatText.slice(0, chatIndex) + '<span class="cursor"></span>';
-                chatIndex++;
-                setTimeout(typeChat, 80);
+        function typeWriter() {
+            if (i < textToType.length) {
+                chatText.innerHTML += textToType.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
             } else {
-                setTimeout(() => { chatIndex = 0; typeChat(); }, 3000);
+                setTimeout(() => {
+                    chatText.innerHTML = "";
+                    i = 0;
+                    typeWriter();
+                }, 4000);
             }
         }
         
-        const chatObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                typeChat();
-                chatObserver.disconnect();
-            }
+        // Start typewriter after a short delay
+        setTimeout(typeWriter, 1500);
+
+        // Bento card mouse effect
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
         });
-        chatObserver.observe(chatEl);
     </script>
 </body>
 </html>
