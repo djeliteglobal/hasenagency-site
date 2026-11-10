@@ -685,8 +685,8 @@
             <h1>We Build Websites, <span class="gradient-text">AI Agents & Automations</span> That Work While You Sleep</h1>
             <p>Hasen Agency helps businesses scale with custom websites, intelligent chatbots, and workflow automations — no tech skills required.</p>
             <div class="hero-btns">
-                <a href="#services" class="btn btn-primary">See Our Work</a>
-                <a href="#contact" class="btn btn-glass">Book a Call</a>
+                <a href="/calculator" class="btn btn-primary">Calculate your $$$ loss</a>
+                <a href="#" class="btn btn-glass" onclick="bookCallEmail(event)">Book a Call</a>
             </div>
         </div>
     </section>
@@ -1345,6 +1345,20 @@
                 showedBeforeUnload = true;
             }
         });
+
+        // Book a Call: prompt email, save, redirect to cal.com
+        function bookCallEmail(e) {
+            e.preventDefault();
+            const email = prompt('Enter your email to book a call:');
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email.');
+                return;
+            }
+            // Save locally (optional: POST to endpoint here)
+            localStorage.setItem('hasen_booking_email', email);
+            // Redirect to cal.com with prefilled email
+            window.location.href = 'https://cal.com/hasen-agency-e093mw/15min?email=' + encodeURIComponent(email);
+        }
     </script>
     
     <!-- Exit Survey Modal -->
