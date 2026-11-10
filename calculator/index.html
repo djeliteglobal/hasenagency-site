@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missed Call Calculator | Hasen Agency</title>
+    <meta name="description" content="See how much revenue your clinic is losing to missed calls — in USD. Free 60-second calculator by Hasen Agency.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    <meta property="og:title" content="Missed Call Calculator | Hasen Agency">
+    <meta property="og:description" content="See how much revenue your clinic is losing to missed calls — in USD. Free 60-second calculator.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --surface: #141414;
+            --border: rgba(255, 255, 255, 0.06);
+            --primary: #7c3aed;
+            --primary-light: #a855f7;
+            --secondary: #06b6d4;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --whatsapp: #25d366;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: rgba(124, 58, 237, 0.3); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        /* Aurora background */
+        .aurora {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+            mask-image: radial-gradient(ellipse at top, black 40%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at top, black 40%, transparent 70%);
+        }
+        .auroraBlob1, .auroraBlob2 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: drift 20s infinite ease-in-out alternate;
+            opacity: 0.5;
+        }
+        .auroraBlob1 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.35), transparent 70%);
+            top: -150px; left: -100px;
+        }
+        .auroraBlob2 {
+            width: 450px; height: 450px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent 70%);
+            top: -100px; right: -120px;
+            animation-delay: -10s;
+        }
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, 40px) scale(1.15); }
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 100;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: -0.5px;
+        }
+        .logo-dot {
+            width: 8px; height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--primary);
+        }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -60%;
+            width: 40%; height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-20deg);
+            animation: shimmer 3s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { left: -60%; }
+            100% { left: 150%; }
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(124, 58, 237, 0.6);
+        }
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        .btn-whatsapp {
+            background: var(--whatsapp);
+            color: #062a14;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+        }
+        .btn-lg { padding: 16px 36px; font-size: 1.05rem; border-radius: 10px; }
+
+        /* Main wizard */
+        main {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            max-width: 760px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 110px 24px 60px;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        /* Progress */
+        .progress-wrap { margin-bottom: 32px; }
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .progress-track {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 999px;
+            transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 12px rgba(124, 58, 237, 0.6);
+        }
+
+        /* Steps */
+        .step { display: none; animation: stepIn 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .step.active { display: block; }
+        @keyframes stepIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-kicker {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            background: rgba(124, 58, 237, 0.12);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            padding: 5px 12px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+        .step h1 {
+            font-size: clamp(1.6rem, 4vw, 2.3rem);
+            line-height: 1.2;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+        .step .sub {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 28px;
+        }
+
+        /* Options */
+        .options { display: grid; gap: 14px; }
+        .options.two-col { grid-template-columns: 1fr 1fr; }
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: left;
+            min-height: 60px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .option:hover {
+            border-color: rgba(124, 58, 237, 0.5);
+            background: rgba(124, 58, 237, 0.06);
+            transform: translateY(-2px);
+        }
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(124, 58, 237, 0.12);
+            box-shadow: 0 0 0 1px var(--primary), 0 4px 24px rgba(124, 58, 237, 0.25);
+        }
+        .option .emoji { font-size: 1.5rem; flex-shrink: 0; }
+        .option .opt-hint {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* Slider */
+        .slider-card { padding: 28px 24px; }
+        .slider-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            margin-bottom: 4px;
+        }
+        .slider-unit {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+        input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            cursor: pointer;
+            box-shadow: 0 0 16px rgba(124, 58, 237, 0.7);
+            border: 3px solid #0a0a0a;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            cursor: pointer;
+            box-shadow: 0 0 16px rgba(124, 58, 237, 0.7);
+            border: 3px solid #0a0a0a;
+        }
+        .chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+        .chip {
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .chip:hover, .chip.selected {
+            border-color: var(--primary);
+            color: var(--text-primary);
+            background: rgba(124, 58, 237, 0.15);
+        }
+
+        /* Money input */
+        .money-input-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .money-input-wrap .prefix {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+        #patientValue {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            width: 160px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            padding: 10px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        #patientValue:focus { border-color: var(--primary); }
+        .value-hint { text-align: center; color: var(--text-secondary); font-size: 0.85rem; margin-top: 12px; }
+
+        /* Wizard nav */
+        .wizard-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+            gap: 12px;
+        }
+        .back-link {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 10px 4px;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--text-primary); }
+        .back-link:disabled { opacity: 0.3; cursor: default; }
+
+        /* Results */
+        .results-hero { text-align: center; padding: 36px 24px 28px; }
+        .results-hero .big-loss {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 10vw, 4.8rem);
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #f472b6, var(--primary-light), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+            margin: 12px 0 6px;
+        }
+        .results-hero .big-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        .results-hero .year-line {
+            margin-top: 14px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .results-hero .year-line span { color: var(--secondary); }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 24px;
+        }
+        .stat-card {
+            padding: 20px 16px;
+            text-align: center;
+        }
+        .stat-card .stat-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+        .stat-card .stat-num.accent { color: var(--primary-light); }
+        .stat-card .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* How we calculate */
+        .how-calc { margin-top: 22px; }
+        .how-calc summary {
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 12px 16px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .how-calc summary::-webkit-details-marker { display: none; }
+        .how-calc summary::before { content: '▸'; transition: transform 0.2s; color: var(--primary-light); }
+        .how-calc[open] summary::before { transform: rotate(90deg); }
+        .how-calc .how-body {
+            padding: 4px 16px 16px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .how-body code {
+            background: rgba(124, 58, 237, 0.15);
+            color: var(--primary-light);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* CTA section */
+        .cta-section { margin-top: 28px; padding: 28px 24px; text-align: center; }
+        .cta-section h2 {
+            font-size: 1.35rem;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+        .cta-section .cta-sub {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 22px;
+        }
+        .cta-buttons { display: flex; flex-direction: column; gap: 12px; max-width: 440px; margin: 0 auto; }
+        .cta-buttons .btn { width: 100%; text-align: center; }
+        .screenshot-box {
+            margin-top: 26px;
+            padding: 20px;
+            border: 1px dashed rgba(37, 211, 102, 0.4);
+            border-radius: 14px;
+            background: rgba(37, 211, 102, 0.05);
+        }
+        .screenshot-box p {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+        }
+        .screenshot-box .hint {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        .disclaimer {
+            margin-top: 22px;
+            font-size: 0.75rem;
+            color: #71717a;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .restart {
+            margin-top: 18px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-decoration: underline;
+            cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .restart:hover { color: var(--text-primary); }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 28px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+            width: 100%;
+        }
+        .footer-copy { color: var(--text-secondary); font-size: 0.85rem; }
+        .social-icons { display: flex; gap: 20px; align-items: center; }
+        .social-icons a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .social-icons a:hover { color: var(--text-primary); }
+
+        /* Intro screen */
+        .intro-screen { text-align: center; padding: 20px 0 10px; }
+        .intro-screen .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(124, 58, 237, 0.12);
+            border: 1px solid rgba(124, 58, 237, 0.35);
+            color: var(--primary-light);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 7px 16px;
+            border-radius: 999px;
+            margin-bottom: 24px;
+        }
+        .intro-screen h1 {
+            font-size: clamp(2rem, 5.5vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+        }
+        .intro-screen h1 .grad {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .intro-screen .sub {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 520px;
+            margin: 0 auto 30px;
+        }
+        .intro-perks {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            flex-wrap: wrap;
+            margin-top: 26px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .intro-perks span { display: inline-flex; align-items: center; gap: 6px; }
+        .intro-perks .check { color: var(--whatsapp); font-weight: 700; }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .nav-links a:not(.btn) { display: none; }
+            .options.two-col { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .slider-value { font-size: 2.6rem; }
+            footer { flex-direction: column; text-align: center; }
+            main { padding-top: 96px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="aurora">
+        <div class="auroraBlob1"></div>
+        <div class="auroraBlob2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="../" class="logo">Hasen<span class="logo-dot"></span></a>
+            <div class="nav-links">
+                <a href="../#services">Services</a>
+                <a href="../#results">Results</a>
+                <a href="../#pricing">Pricing</a>
+                <a href="../#contact" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem;">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Progress (hidden on intro) -->
+        <div class="progress-wrap" id="progressWrap" style="display:none;">
+            <div class="progress-meta">
+                <span id="progressLabel">Question 1 of 5</span>
+                <span id="progressPct">0%</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+
+        <!-- INTRO -->
+        <section class="step active" id="step-intro">
+            <div class="intro-screen">
+                <div class="badge">🤖 Free · 60 seconds</div>
+                <h1>How much is your clinic <span class="grad">losing to missed calls?</span></h1>
+                <p class="sub">Answer 5 quick questions and see the revenue walking out the door — in USD. No email required.</p>
+                <button class="btn btn-primary btn-lg" onclick="startCalc()">Calculate My Losses →</button>
+                <div class="intro-perks">
+                    <span><span class="check">✓</span> No signup</span>
+                    <span><span class="check">✓</span> Instant result</span>
+                    <span><span class="check">✓</span> Based on your numbers</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q1 -->
+        <section class="step" id="step-1">
+            <span class="step-kicker">Question 1 of 5</span>
+            <h1>What best describes your business?</h1>
+            <p class="sub">This sets a sensible default for patient value.</p>
+            <div class="options two-col" role="radiogroup" aria-label="Business type">
+                <button class="option" data-q="type" data-val="dental" onclick="pickOption(this)"><span class="emoji">🦷</span><span>Dental Clinic<span class="opt-hint">General, cosmetic, ortho</span></span></button>
+                <button class="option" data-q="type" data-val="medspa" onclick="pickOption(this)"><span class="emoji">✨</span><span>Med Spa<span class="opt-hint">Aesthetics, injectables, laser</span></span></button>
+                <button class="option" data-q="type" data-val="medical" onclick="pickOption(this)"><span class="emoji">🩺</span><span>Other Medical Practice<span class="opt-hint">Primary care, specialty, clinic</span></span></button>
+                <button class="option" data-q="type" data-val="home" onclick="pickOption(this)"><span class="emoji">🛠️</span><span>Home Services<span class="opt-hint">HVAC, plumbing, electrical</span></span></button>
+            </div>
+            <div class="wizard-nav">
+                <button class="back-link" onclick="goTo('intro')">← Back</button>
+                <span></span>
+            </div>
+        </section>
+
+        <!-- Q2 -->
+        <section class="step" id="step-2">
+            <span class="step-kicker">Question 2 of 5</span>
+            <h1>Roughly how many calls do you get per day?</h1>
+            <p class="sub">A rough estimate is fine — new patients, existing patients, everyone.</p>
+            <div class="glass slider-card">
+                <div class="slider-value" id="callsDisplay">25</div>
+                <div class="slider-unit">calls per day</div>
+                <input type="range" id="callsRange" min="5" max="100" value="25" step="1"
+                       aria-label="Calls per day" oninput="onCallsSlider(this.value)">
+                <div class="chips">
+                    <button class="chip" onclick="setCalls(10)">10</button>
+                    <button class="chip selected" onclick="setCalls(25)">25</button>
+                    <button class="chip" onclick="setCalls(50)">50</button>
+                    <button class="chip" onclick="setCalls(75)">75+</button>
+                </div>
+            </div>
+            <div class="wizard-nav">
+                <button class="back-link" onclick="goTo(1)">← Back</button>
+                <button class="btn btn-primary" onclick="goTo(3)">Next →</button>
+            </div>
+        </section>
+
+        <!-- Q3 -->
+        <section class="step" id="step-3">
+            <span class="step-kicker">Question 3 of 5</span>
+            <h1>What percent of calls go unanswered?</h1>
+            <p class="sub">Voicemail, busy lines, after-hours, lunch breaks — your honest best guess.</p>
+            <div class="options" role="radiogroup" aria-label="Miss rate">
+                <button class="option" data-q="miss" data-val="10" onclick="pickOption(this)"><span class="emoji">🟢</span><span>About 10%<span class="opt-hint">Pretty covered — rare misses</span></span></button>
+                <button class="option" data-q="miss" data-val="25" onclick="pickOption(this)"><span class="emoji">🟡</span><span>About 25%<span class="opt-hint">A quarter slip through</span></span></button>
+                <button class="option" data-q="miss" data-val="40" onclick="pickOption(this)"><span class="emoji">🟠</span><span>About 40%<span class="opt-hint">Busy days, common misses</span></span></button>
+                <button class="option" data-q="miss" data-val="50" onclick="pickOption(this)"><span class="emoji">🔴</span><span>50% or more<span class="opt-hint">Half of all calls go nowhere</span></span></button>
+            </div>
+            <div class="wizard-nav">
+                <button class="back-link" onclick="goTo(2)">← Back</button>
+                <span></span>
+            </div>
+        </section>
+
+        <!-- Q4 -->
+        <section class="step" id="step-4">
+            <span class="step-kicker">Question 4 of 5</span>
+            <h1>What's a new patient worth to you?</h1>
+            <p class="sub">First-visit revenue (or lifetime value if you prefer). We pre-filled a default — edit it.</p>
+            <div class="glass slider-card">
+                <div class="money-input-wrap">
+                    <span class="prefix">$</span>
+                    <input type="number" id="patientValue" min="0" step="10" value="500" aria-label="Average value of a new patient">
+                </div>
+                <p class="value-hint" id="valueHint">Default for dental clinics: $500</p>
+                <div class="chips" id="valueChips">
+                    <button class="chip" onclick="setValue(250)">$250</button>
+                    <button class="chip" onclick="setValue(350)">$350</button>
+                    <button class="chip selected" onclick="setValue(500)">$500</button>
+                    <button class="chip" onclick="setValue(800)">$800</button>
+                    <button class="chip" onclick="setValue(1200)">$1,200</button>
+                </div>
+            </div>
+            <div class="wizard-nav">
+                <button class="back-link" onclick="goTo(3)">← Back</button>
+                <button class="btn btn-primary" onclick="goTo(5)">Next →</button>
+            </div>
+        </section>
+
+        <!-- Q5 -->
+        <section class="step" id="step-5">
+            <span class="step-kicker">Question 5 of 5</span>
+            <h1>Do you answer calls after hours &amp; weekends?</h1>
+            <p class="sub">Nights, weekends, holidays — when the clinic is closed but the phone still rings.</p>
+            <div class="options" role="radiogroup" aria-label="After hours answering">
+                <button class="option" data-q="hours" data-val="always" onclick="pickOption(this)"><span class="emoji">✅</span><span>Yes, always<span class="opt-hint">Someone picks up 24/7</span></span></button>
+                <button class="option" data-q="hours" data-val="sometimes" onclick="pickOption(this)"><span class="emoji">⚠️</span><span>Sometimes<span class="opt-hint">Depends on the day / who's on call</span></span></button>
+                <button class="option" data-q="hours" data-val="never" onclick="pickOption(this)"><span class="emoji">🌙</span><span>No, never<span class="opt-hint">Calls hit voicemail when closed</span></span></button>
+            </div>
+            <div class="wizard-nav">
+                <button class="back-link" onclick="goTo(4)">← Back</button>
+                <span></span>
+            </div>
+        </section>
+
+        <!-- RESULTS -->
+        <section class="step" id="step-results">
+            <div class="glass results-hero">
+                <span class="step-kicker" style="margin-bottom:4px;">Your estimated loss</span>
+                <div class="big-loss" id="lossMonth">$0</div>
+                <div class="big-label">lost per month to missed calls</div>
+                <div class="year-line">That's <span id="lossYear">$0</span> per year</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="glass stat-card">
+                    <div class="stat-num accent" id="missedMonth">0</div>
+                    <div class="stat-label">Missed calls / month</div>
+                </div>
+                <div class="glass stat-card">
+                    <div class="stat-num accent" id="patientsMonth">0</div>
+                    <div class="stat-label">Lost patients / month</div>
+                </div>
+            </div>
+
+            <details class="glass how-calc">
+                <summary>How we calculate this</summary>
+                <div class="how-body">
+                    <strong>Missed calls/month</strong> = calls/day × miss rate × 26 working days.<br>
+                    <strong>Lost patients/month</strong> = missed calls × <code>0.5</code> — industry data shows about half of callers who don't get through never call back; they book elsewhere.<br>
+                    <strong>Lost revenue/month</strong> = lost patients × the patient value you entered.<br><br>
+                    Inputs you gave: <code id="calcInputs">—</code>
+                </div>
+            </details>
+
+            <div class="glass cta-section">
+                <h2>Want to fix this?</h2>
+                <p class="cta-sub">Book a free 10-minute call — we'll verify your numbers and show you exactly how much you can recover.</p>
+                <div class="cta-buttons">
+                    <a href="https://cal.com/hasen-agency-e093mw/15min" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Book My Free 10-Min Call →</a>
+                </div>
+
+                <div class="screenshot-box">
+                    <p><strong>Do you have more info about your phone or missed calls?</strong><br>Send us a screenshot of your call log or phone stats.</p>
+                    <a href="https://wa.me/5521999340899?text=Hi!%20I%20just%20ran%20the%20missed-call%20calculator%20on%20hasenagency.site%20-%20I%20want%20to%20share%20a%20screenshot%20of%20my%20calls" target="_blank" rel="noopener" class="btn btn-whatsapp">📸 Send Screenshot on WhatsApp</a>
+                    <p class="hint">or</p>
+                    <a href="https://wa.me/5521999340899?text=Hi!%20I%20have%20a%20question" target="_blank" rel="noopener" class="btn btn-glass">💬 Hi, I have a question</a>
+                </div>
+
+                <p class="disclaimer">Estimates based on the inputs you provided and industry averages — not a guarantee of results. Actual losses vary.</p>
+                <button class="restart" onclick="restart()">↺ Recalculate with different numbers</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-copy">Hasen Agency &copy; 2026. All rights reserved.</div>
+        <div class="social-icons">
+            <a href="../#services">Services</a>
+            <a href="../#contact">Contact</a>
+            <a href="#">Privacy</a>
+            <span style="color: var(--border);">|</span>
+            <a href="#">𝕏</a>
+            <a href="#">In</a>
+            <a href="#">Ig</a>
+        </div>
+    </footer>
+
+    <script>
+        const state = {
+            type: null,
+            calls: 25,
+            miss: null,
+            value: 500,
+            hours: null
+        };
+
+        const VALUE_DEFAULTS = {
+            dental: { v: 500, label: 'Default for dental clinics: $500' },
+            medspa: { v: 350, label: 'Default for med spas: $350' },
+            medical: { v: 300, label: 'Default for medical practices: $300' },
+            home: { v: 250, label: 'Default for home services: $250' }
+        };
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function goTo(step) {
+            if (step === 'intro') {
+                showStep('intro');
+                document.getElementById('progressWrap').style.display = 'none';
+                return;
+            }
+            // validation per step
+            if (step >= 2 && !state.type) { showStep(1); return; }
+            if (step >= 3 && state.miss === null && step === 3) { /* miss needed before results */ }
+            if (step === 5 && state.miss === null) { showStep(3); return; }
+            if (step === 'results') {
+                if (!state.type || state.miss === null || !state.hours) {
+                    if (!state.type) return showStep(1);
+                    if (state.miss === null) return showStep(3);
+                    return showStep(5);
+                }
+                renderResults();
+                showStep('results');
+                document.getElementById('progressLabel').textContent = 'Results';
+                document.getElementById('progressPct').textContent = '100%';
+                document.getElementById('progressFill').style.width = '100%';
+                return;
+            }
+            showStep(step);
+            updateProgress(step);
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            const el = document.getElementById('step-' + step);
+            if (el) el.classList.add('active');
+            window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+        }
+
+        function updateProgress(step) {
+            const wrap = document.getElementById('progressWrap');
+            wrap.style.display = 'block';
+            const pct = Math.round((step / 5) * 100);
+            document.getElementById('progressLabel').textContent = 'Question ' + step + ' of 5';
+            document.getElementById('progressPct').textContent = pct + '%';
+            document.getElementById('progressFill').style.width = pct + '%';
+        }
+
+        function startCalc() {
+            goTo(1);
+        }
+
+        function pickOption(btn) {
+            const q = btn.dataset.q;
+            const val = btn.dataset.val;
+            document.querySelectorAll('[data-q="' + q + '"]').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+
+            if (q === 'type') {
+                state.type = val;
+                const d = VALUE_DEFAULTS[val];
+                state.value = d.v;
+                document.getElementById('patientValue').value = d.v;
+                document.getElementById('valueHint').textContent = d.label;
+                document.querySelectorAll('#valueChips .chip').forEach(c => c.classList.remove('selected'));
+                const match = Array.from(document.querySelectorAll('#valueChips .chip'))
+                    .find(c => c.textContent.replace(/[^0-9]/g, '') == d.v);
+                if (match) match.classList.add('selected');
+                setTimeout(() => goTo(2), 250);
+            } else if (q === 'miss') {
+                state.miss = parseInt(val, 10);
+                setTimeout(() => goTo(4), 250);
+            } else if (q === 'hours') {
+                state.hours = val;
+                setTimeout(() => goTo('results'), 300);
+            }
+        }
+
+        function onCallsSlider(v) {
+            state.calls = parseInt(v, 10);
+            document.getElementById('callsDisplay').textContent = v;
+            document.querySelectorAll('#step-2 .chip').forEach(c => {
+                c.classList.toggle('selected', parseInt(c.textContent, 10) === state.calls ||
+                    (c.textContent.includes('+') && state.calls >= 75));
+            });
+        }
+
+        function setCalls(v) {
+            document.getElementById('callsRange').value = v;
+            onCallsSlider(v);
+        }
+
+        function setValue(v) {
+            state.value = v;
+            document.getElementById('patientValue').value = v;
+            document.querySelectorAll('#valueChips .chip').forEach(c => c.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+
+        document.getElementById('patientValue').addEventListener('input', function () {
+            state.value = Math.max(0, parseInt(this.value, 10) || 0);
+            document.querySelectorAll('#valueChips .chip').forEach(c => c.classList.remove('selected'));
+        });
+
+        function hoursAdjustment() {
+            if (state.hours === 'never') return 0.10;
+            if (state.hours === 'sometimes') return 0.05;
+            return 0;
+        }
+
+        function animateNumber(el, target, prefix, suffix) {
+            if (reducedMotion) {
+                el.textContent = prefix + target.toLocaleString('en-US') + (suffix || '');
+                return;
+            }
+            const duration = 1200;
+            const start = performance.now();
+            function frame(now) {
+                const p = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                const current = Math.round(target * eased);
+                el.textContent = prefix + current.toLocaleString('en-US') + (suffix || '');
+                if (p < 1) requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+        }
+
+        function renderResults() {
+            const missRate = Math.min(0.9, state.miss / 100 + hoursAdjustment());
+            const missedPerDay = state.calls * missRate;
+            const missedMonth = Math.round(missedPerDay * 26);
+            const patientsMonth = Math.round(missedMonth * 0.5);
+            const revenueMonth = Math.round(patientsMonth * state.value);
+            const revenueYear = revenueMonth * 12;
+
+            animateNumber(document.getElementById('lossMonth'), revenueMonth, '$');
+            animateNumber(document.getElementById('lossYear'), revenueYear, '$');
+            animateNumber(document.getElementById('missedMonth'), missedMonth, '');
+            animateNumber(document.getElementById('patientsMonth'), patientsMonth, '');
+
+            const hoursLabel = { always: 'answers after hours', sometimes: 'sometimes answers after hours', never: 'never answers after hours' }[state.hours];
+            document.getElementById('calcInputs').textContent =
+                state.calls + ' calls/day · ' + Math.round(missRate * 100) + '% effective miss rate · $' +
+                state.value.toLocaleString('en-US') + ' per patient · ' + hoursLabel;
+        }
+
+        function restart() {
+            state.type = null; state.miss = null; state.hours = null;
+            state.calls = 25; state.value = 500;
+            document.querySelectorAll('.option.selected').forEach(b => b.classList.remove('selected'));
+            setCalls(25);
+            document.getElementById('patientValue').value = 500;
+            document.getElementById('progressWrap').style.display = 'none';
+            showStep('intro');
+        }
+
+        // Keyboard: Enter advances on option steps
+        document.addEventListener('keydown', function (e) {
+            if (e.key !== 'Enter') return;
+            const active = document.querySelector('.step.active');
+            if (!active) return;
+            const id = active.id;
+            if (id === 'step-intro') startCalc();
+            else if (id === 'step-2') goTo(3);
+            else if (id === 'step-4') goTo(5);
+        });
+    </script>
+</body>
+</html>

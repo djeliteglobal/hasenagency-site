@@ -664,6 +664,7 @@
                 <a href="#services">Services</a>
                 <a href="#results">Results</a>
                 <a href="#pricing">Pricing</a>
+                <a href="/calculator">Calculator</a>
             </div>
             <a href="#contact" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem;">Get Started</a>
         </div>
@@ -890,13 +891,40 @@
         </div>
     </section>
 
+    <!-- Bundle Pricing Banner -->
+    <section id="bundle-banner" style="padding: 48px 24px; text-align: center; background: linear-gradient(135deg, #1a0b2e 0%, #0f0a14 100%);">
+        <div style="max-width: 720px; margin: 0 auto; padding: 32px; background: rgba(255,255,255,0.03); border: 1px solid rgba(124,58,237,0.4); border-radius: 20px; backdrop-filter: blur(12px); box-shadow: 0 0 60px rgba(124,58,237,0.15);">
+            <div style="display: inline-block; padding: 6px 14px; background: linear-gradient(135deg, #7c3aed, #a855f7); border-radius: 999px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; color: #fff; margin-bottom: 16px; text-transform: uppercase;">Bundle Deal</div>
+            <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; line-height: 1.25; margin-bottom: 12px; color: #fafafa;">Starter + SMS — Launch with a lead-capture website AND text messaging for just <span style="background: linear-gradient(135deg, #c084fc, #e879f9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">$129/mo</span>.</h2>
+            <p style="color: #a1a1aa; font-size: 1rem; line-height: 1.6; margin-bottom: 8px;">That's the $99 Starter + $49 SMS add-on, but bundled for $129 — <strong style="color: #fafafa;">you save $19/mo, $228/yr.</strong></p>
+            <p style="color: #888; font-size: 0.9rem; margin-top: 12px;">Includes setup + 100 SMS credits/month (then $0.05/credit, avg 2¢/text).</p>
+            <a href="#pricing" class="btn btn-primary" style="display: inline-block; margin-top: 24px; padding: 14px 32px; font-size: 1rem;">Choose Bundle</a>
+        </div>
+    </section>
+
+    <!-- Founding Deal Banner -->
+    <div class="founding-deal-banner reveal" style="background: linear-gradient(135deg, #7c3aed 0%, #06b2eb 100%); margin: 40px auto; max-width: 1000px; border-radius: 16px; padding: 24px 32px; text-align: center;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px;">
+            <span style="font-size: 1.5rem;">⚡</span>
+            <span style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 100px;">LIMITED TIME</span>
+            <span style="font-size: 1.5rem;">⚡</span>
+        </div>
+        <h3 style="color: white; font-size: 1.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 800; margin-bottom: 8px;">Founding Deal — 10 spots remaining</h3>
+        <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 16px;">
+            Lock in 30% off any plan + <strong>zero setup fees</strong>. Only 10 Founding Deal spots available.
+        </p>
+        <div id="founding-counter" style="color: white; font-size: 1.25rem; font-family: 'Space Grotesk', sans-serif; font-weight: 800; margin-top: 12px;">
+            <span id="spots-left">10</span> spots left — <span id="time-left">24:00:00</span> remaining
+        </div>
+    </div>
+
     <!-- Pricing -->
     <section id="pricing" class="py-24 px-6">
         <div class="max-w-1200 mx-auto">
             <h2 class="section-title reveal">Simple, Transparent Pricing</h2>
             <p class="section-subtitle reveal">Invest in automation. Save on payroll.</p>
             
-            <div class="pricing-grid">
+            <div class="pricing-grid" style="grid-template-columns: repeat(4, 1fr);">
                 <!-- Starter -->
                 <div class="pricing-card glass reveal" style="transition-delay: 0.1s">
                     <h3 class="price-title font-display">Starter</h3>
@@ -910,10 +938,25 @@
                     <a href="#contact" class="btn btn-glass" style="width: 100%;">Choose Starter</a>
                 </div>
                 
-                <!-- Growth -->
+                <!-- Bundle (Starter + SMS) - Most Popular -->
                 <div class="pricing-card glass popular reveal" style="transition-delay: 0.2s">
-                    <div class="popular-badge">Most Popular</div>
-                    <h3 class="price-title font-display text-white">Growth</h3>
+                    <div class="popular-badge">Best Value</div>
+                    <h3 class="price-title font-display text-white">Starter + SMS Bundle</h3>
+                    <div class="price-amount">$129<span>/mo</span></div>
+                    <div style="color: #10b981; font-size: 0.9rem; margin-bottom: 12px; font-weight: 600;">Save $19/month vs. buying separately</div>
+                    <ul class="feature-list">
+                        <li>Premium Template Website + SMS Integration</li>
+                        <li>Advanced Lead Capture via Text</li>
+                        <li>Automated Lead Routing & Response</li>
+                        <li>Priority Support</li>
+                        <li style="color: #10b981;">Includes 100 SMS credits/month</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Choose Bundle</a>
+                </div>
+                
+                <!-- Growth -->
+                <div class="pricing-card glass reveal" style="transition-delay: 0.3s">
+                    <h3 class="price-title font-display">Growth</h3>
                     <div class="price-amount">$297<span>/mo</span></div>
                     <ul class="feature-list">
                         <li>Custom Designed Website</li>
@@ -922,11 +965,11 @@
                         <li>Basic CRM Integration</li>
                         <li>Priority Support</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Choose Growth</a>
+                    <a href="#contact" class="btn btn-glass" style="width: 100%;">Choose Growth</a>
                 </div>
                 
                 <!-- Enterprise -->
-                <div class="pricing-card glass reveal" style="transition-delay: 0.3s">
+                <div class="pricing-card glass reveal" style="transition-delay: 0.4s">
                     <h3 class="price-title font-display">Enterprise</h3>
                     <div class="price-amount">Custom</div>
                     <ul class="feature-list">
@@ -941,6 +984,82 @@
             </div>
         </div>
     </section>
+            <!-- Add-ons -->
+            <div class="addons-section" style="margin-top: 60px; padding: 40px 0; border-top: 1px solid var(--border);">
+                <h3 class="section-title text-center" style="margin-bottom: 30px;">Popular Add-ons</h3>
+                <p class="section-subtitle text-center" style="margin-bottom: 40px;">Customize your automation stack</p>
+                
+                <div class="pricing-grid">
+                    <!-- SMS Integration -->
+                    <div class="pricing-card glass reveal" style="transition-delay: 0.1s">
+                        <h3 class="price-title font-display">SMS Integration</h3>
+                        <div class="price-amount">$49<span>/mo</span></div>
+                        <ul class="feature-list">
+                            <li>Automated SMS reminders</li>
+                            <li>Two-way messaging</li>
+                            <li>Appointment confirmations</li>
+                            <li>Follow-up sequences</li>
+                        </ul>
+                        <button class="btn btn-glass" style="width: 100%;" onclick="alert('SMS addon selected!')">Add to Plan</button>
+                    </div>
+                    
+                    <!-- Reputation Management -->
+                    <div class="pricing-card glass reveal" style="transition-delay: 0.2s">
+                        <h3 class="price-title font-display">Reputation Management</h3>
+                        <div class="price-amount">$79<span>/mo</span></div>
+                        <ul class="feature-list">
+                            <li>Google My Business monitoring</li>
+                            <li>Review request automation</li>
+                            <li>Review response generator</li>
+                            <li>Reputation score tracking</li>
+                        </ul>
+                        <button class="btn btn-glass" style="width: 100%;" onclick="alert('Reputation addon selected!')">Add to Plan</button>
+                    </div>
+                    
+                    <!-- Social Media Management -->
+                    <div class="pricing-card glass reveal" style="transition-delay: 0.3s">
+                        <h3 class="price-title font-display">Social Media Management</h3>
+                        <div class="price-amount">$99<span>/mo</span></div>
+                        <ul class="feature-list">
+                            <li>Automated posting</li>
+                            <li>Content calendar</li>
+                            <li>Engagement tracking</li>
+                            <li>Hashtag optimization</li>
+                        </ul>
+                        <button class="btn btn-glass" style="width: 100%;" onclick="alert('Social Media addon selected!')">Add to Plan</button>
+                    </div>
+                    
+                    <!-- Priority Support -->
+                    <div class="pricing-card glass reveal" style="transition-delay: 0.4s">
+                        <h3 class="price-title font-display">Priority Support</h3>
+                        <div class="price-amount">$29<span>/mo</span></div>
+                        <ul class="feature-list">
+                            <li>Dedicated Slack channel</li>
+                            <li>2-hour response SLA</li>
+                            <li>Priority feature requests</li>
+                            <li>Quarterly strategy calls</li>
+                        </ul>
+                        <button class="btn btn-glass" style="width: 100%;" onclick="alert('Priority Support addon selected!')">Add to Plan</button>
+                    </div>
+                    
+                    <!-- Custom Domain -->
+                    <div class="pricing-card glass reveal" style="transition-delay: 0.5s">
+                        <h3 class="price-title font-display">Custom Domain</h3>
+                        <div class="price-amount">$19<span>/mo</span></div>
+                        <ul class="feature-list">
+                            <li>Branded email addresses</li>
+                            <li>Custom website URLs</li>
+                            <li>SSL certificate management</li>
+                            <li>Domain analytics</li>
+                        </ul>
+                        <button class="btn btn-glass" style="width: 100%;" onclick="alert('Custom Domain addon selected!')">Add to Plan</button>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 30px; color: var(--text-secondary); font-size: 0.9rem;">
+                    Add any combination of add-ons to your chosen plan. All add-ons are billed monthly and can be cancelled anytime.
+                </p>
+            </div>
+
 
     <!-- Final CTA -->
     <section id="contact" class="final-cta reveal">
@@ -959,6 +1078,7 @@
         </div>
         <div class="social-icons">
             <a href="#services">Services</a>
+            <a href="/calculator">Calculator</a>
             <a href="#contact">Contact</a>
             <a href="#">Privacy</a>
             <span style="color: var(--border);">|</span>
@@ -1090,6 +1210,281 @@
                 card.style.setProperty('--mouse-y', `${y}px`);
             });
         });
+
+        // ===========================================
+        // EXIT SURVEY IMPLEMENTATION
+        // ===========================================
+        
+        const EXIT_SURVEY_KEY = 'hasen_exit_survey_shown';
+        const EXIT_SURVEY_RESPONSES_KEY = 'hasen_exit_survey_responses';
+        
+        function hasSeenExitSurvey() {
+            return localStorage.getItem(EXIT_SURVEY_KEY) === 'true';
+        }
+        
+        function markSurveySeen() {
+            localStorage.setItem(EXIT_SURVEY_KEY, 'true');
+        }
+        
+        function getSurveyResponses() {
+            const stored = localStorage.getItem(EXIT_SURVEY_RESPONSES_KEY);
+            return stored ? JSON.parse(stored) : [];
+        }
+        
+        function saveSurveyResponse(response) {
+            const responses = getSurveyResponses();
+            responses.push({
+                ...response,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem(EXIT_SURVEY_RESPONSES_KEY, JSON.stringify(responses));
+            console.log('Exit survey response saved:', response);
+        }
+        
+        function showExitSurvey() {
+            if (hasSeenExitSurvey()) return;
+            
+            const surveyModal = document.getElementById('exit-survey-modal');
+            if (surveyModal) {
+                surveyModal.style.display = 'flex';
+                markSurveySeen();
+            }
+        }
+        
+        function hideExitSurvey() {
+            const surveyModal = document.getElementById('exit-survey-modal');
+            const recoveryOffer = document.getElementById('recovery-offer-modal');
+            if (surveyModal) surveyModal.style.display = 'none';
+            if (recoveryOffer) recoveryOffer.style.display = 'none';
+        }
+        
+        function showRecoveryOffer(objection) {
+            hideExitSurvey();
+            
+            const recoveryOffer = document.getElementById('recovery-offer-modal');
+            const offerContent = document.getElementById('recovery-offer-content');
+            const offerCta = document.getElementById('recovery-offer-cta');
+            
+            if (!recoveryOffer || !offerContent || !offerCta) return;
+            
+            const offers = {
+                'too-expensive': {
+                    title: 'Special Offer — Starter Plan',
+                    message: 'We understand budget is a concern. Here\'s an exclusive deal for you:',
+                    cta: 'Get Starter at $99/mo',
+                    ctaLink: '#contact'
+                },
+                'not-sure': {
+                    title: 'Risk-Free Guarantee',
+                    message: 'Not sure it works? Here\'s what past clients say:',
+                    cta: 'Book Free Consultation',
+                    ctaLink: '#contact'
+                },
+                'need-features': {
+                    title: 'Let\'s Find the Right Fit',
+                    message: 'Every business is unique. Let\'s discuss your specific needs:',
+                    cta: 'Talk to an Expert',
+                    ctaLink: '#contact'
+                },
+                'just-browsing': {
+                    title: 'No Pressure',
+                    message: 'We get it — you\'re just browsing. Here\'s what makes us different:',
+                    cta: 'Learn More',
+                    ctaLink: '#services'
+                },
+                'other': {
+                    title: 'We\'d Love to Help',
+                    message: 'Tell us more about what you need. We\'re here to help:',
+                    cta: 'Get in Touch',
+                    ctaLink: '#contact'
+                }
+            };
+            
+            const offer = offers[objection] || offers['other'];
+            offerContent.innerHTML = `<h3>${offer.title}</h3><p>${offer.message}</p>`;
+            offerCta.href = offer.ctaLink;
+            offerCta.textContent = offer.cta;
+            
+            recoveryOffer.style.display = 'flex';
+        }
+        
+        function submitSurvey() {
+            const objection = document.getElementById('objection-select')?.value;
+            const priceChange = document.querySelector('input[name="price-change"]:checked')?.value;
+            
+            if (!objection) {
+                alert('Please select an option');
+                return;
+            }
+            
+            const response = {
+                objection: objection,
+                priceChange: priceChange || 'no-response',
+                page: window.location.href,
+                url: 'hasenagency.site'
+            };
+            
+            saveSurveyResponse(response);
+            showRecoveryOffer(objection);
+        }
+        
+        // Exit intent detection
+        let exitIntentTriggered = false;
+        
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 0 && !exitIntentTriggered) {
+                exitIntentTriggered = true;
+                showExitSurvey();
+            }
+        });
+        
+        // Also trigger on beforeunload as backup (shows less obtrusively)
+        let showedBeforeUnload = false;
+        window.addEventListener('beforeunload', (e) => {
+            if (!hasSeenExitSurvey() && !showedBeforeUnload) {
+                showedBeforeUnload = true;
+            }
+        });
     </script>
+    
+    <!-- Exit Survey Modal -->
+    <div id="exit-survey-modal" style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.8);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+    ">
+        <div style="
+            background: #141414;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        ">
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin-bottom: 8px;">
+                Wait! Before You Go...
+            </h3>
+            <p style="color: #a1a1aa; margin-bottom: 32px;">
+                Help us understand — what would make this work for you?
+            </p>
+            
+            <div style="margin-bottom: 24px; text-align: left;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.95rem;">
+                    What's holding you back?
+                </label>
+                <select id="objection-select" style="
+                    width: 100%;
+                    padding: 12px 16px;
+                    background: #0a0a0a;
+                    border: 1px solid rgba(255,255,255,0.1);
+                    border-radius: 8px;
+                    color: #fafafa;
+                    font-size: 1rem;
+                    cursor: pointer;
+                ">
+                    <option value="">Select an option...</option>
+                    <option value="too-expensive">Too expensive</option>
+                    <option value="need-features">Need more features</option>
+                    <option value="not-sure">Not sure it works</option>
+                    <option value="just-browsing">Just browsing</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div style="margin-bottom: 32px; text-align: left;">
+                <label style="display: block; margin-bottom: 12px; font-weight: 600; font-size: 0.95rem;">
+                    Would $99/mo change your mind?
+                </label>
+                <div style="display: flex; gap: 16px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="radio" name="price-change" value="yes" style="accent-color: #7c3aed;">
+                        <span>Yes</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="radio" name="price-change" value="no" style="accent-color: #7c3aed;">
+                        <span>No</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 12px;">
+                <button onclick="hideExitSurvey()" style="
+                    flex: 1;
+                    padding: 12px 24px;
+                    background: transparent;
+                    border: 1px solid rgba(255,255,255,0.1);
+                    border-radius: 8px;
+                    color: #a1a1aa;
+                    font-weight: 600;
+                    cursor: pointer;
+                ">
+                    No thanks
+                </button>
+                <button onclick="submitSurvey()" style="
+                    flex: 1;
+                    padding: 12px 24px;
+                    background: linear-gradient(135deg, #7c3aed, #a855f7);
+                    border: none;
+                    border-radius: 8px;
+                    color: white;
+                    font-weight: 600;
+                    cursor: pointer;
+                ">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recovery Offer Modal -->
+    <div id="recovery-offer-modal" style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.8);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+    ">
+        <div style="
+            background: #141414;
+            border: 1px solid #7c3aed;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(124, 58, 237, 0.3);
+        ">
+            <div id="recovery-offer-content" style="margin-bottom: 32px;">
+                <!-- Dynamic content -->
+            </div>
+            <a id="recovery-offer-cta" href="#contact" class="btn btn-primary" style="
+                display: inline-block;
+                padding: 14px 32px;
+                font-size: 1rem;
+            ">
+                Get Started
+            </a>
+            <button onclick="hideExitSurvey()" style="
+                display: block;
+                margin: 16px auto 0;
+                background: none;
+                border: none;
+                color: #666;
+                cursor: pointer;
+                font-size: 0.9rem;
+            ">
+                No thanks, take me back
+            </button>
+        </div>
+    </div>
 </body>
 </html>
