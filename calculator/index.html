@@ -809,8 +809,8 @@
                 <button class="option" data-q="hours" data-val="never" onclick="pickOption(this)"><span class="emoji">🌙</span><span>No, never<span class="opt-hint">Calls hit voicemail when closed</span></span></button>
             </div>
 <div class="wizard-nav">
-                <button class="back-link" onclick="goTo(4)">← Back</button>
-                <button class="btn btn-primary" onclick="goTo(5)">Next →</button>
+<button class="back-link" onclick="goTo(4)">← Back</button>
+            <button class="btn btn-primary" onclick="goTo('email')">Next →</button>
             </div>
         </section>
 
@@ -1095,6 +1095,7 @@
             if (id === 'step-intro') startCalc();
             else if (id === 'step-2') goTo(3);
             else if (id === 'step-4') goTo(5);
+            else if (id === 'step-5') goTo('email');
         });
     </script>
 </body>
