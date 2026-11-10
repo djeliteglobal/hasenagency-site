@@ -305,39 +305,107 @@
             justify-content: center;
         }
 
-        /* Marquee */
-        .marquee-section {
+        /* Trusted By */
+        .trusted-by {
             padding: 40px 0;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             background: rgba(0,0,0,0.3);
-            overflow: hidden;
-            white-space: nowrap;
         }
-        .marquee-text {
+        .trusted-label {
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
-            margin-bottom: 24px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            margin-bottom: 24px;
         }
-        .marquee {
-            display: inline-block;
-            animation: scroll 40s linear infinite;
+        .trusted-logos {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
         }
-        .marquee span {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.4);
+        .trusted-logo {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.25rem;
-            margin-right: 60px;
+            font-weight: 600;
+            color: var(--text-primary);
+            opacity: 0.7;
+            transition: opacity 0.3s;
         }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .trusted-logo:hover { opacity: 1; }
+
+        /* Case Study */
+        .case-study { background: transparent; }
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 48px;
+            border-radius: 24px;
+        }
+        .case-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            background: rgba(124, 58, 237, 0.1);
+            padding: 6px 14px;
+            border-radius: 999px;
+        }
+        .case-content h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .case-content p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
+        .case-metrics {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .case-metrics li {
+            padding: 16px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+        .case-insight {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--primary);
+            padding-left: 16px;
+            font-style: italic;
+        }
+        .case-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .case-placeholder {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.1));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-family: 'Space Grotesk';
+        }
+
+        @media (max-width: 900px) {
+            .case-study-grid { grid-template-columns: 1fr; }
+            .case-visual { display: none; }
+            .case-metrics { grid-template-columns: 1fr; }
         }
 
         /* Bento Grid */
@@ -680,10 +748,10 @@
         
         <div class="hero-content reveal">
             <div class="badge">
-                🤖 Powered by AI
+                🤖 AI Reception for Clinics
             </div>
-            <h1>We Build Websites, <span class="gradient-text">AI Agents & Automations</span> That Work While You Sleep</h1>
-            <p>Hasen Agency helps businesses scale with custom websites, intelligent chatbots, and workflow automations — no tech skills required.</p>
+            <h1>Stop Losing Patients to Missed Calls</h1>
+            <p>AI answers 24/7, books appointments, follows up. Your front desk keeps every call.</p>
             <div class="hero-btns">
                 <a href="/calculator" class="btn btn-primary">Calculate your $$$ loss</a>
                 <a href="#" class="btn btn-glass" onclick="bookCallEmail(event)">Book a Call</a>
@@ -691,27 +759,39 @@
         </div>
     </section>
 
-    <!-- Marquee -->
-    <div class="marquee-section">
-        <div class="marquee-text">Trusted by businesses across industries</div>
-        <div class="marquee-wrapper" style="overflow: hidden; width: 100%;">
-            <div class="marquee">
-                <!-- Repeated twice for infinite effect -->
-                <span>🦷 Dental Clinics</span>
-                <span>🏠 Real Estate</span>
-                <span>🏋️ Gyms & Fitness</span>
-                <span>🛠️ HVAC Services</span>
-                <span>🍽️ Restaurants</span>
-                <span>⚖️ Law Firms</span>
-                <span>🦷 Dental Clinics</span>
-                <span>🏠 Real Estate</span>
-                <span>🏋️ Gyms & Fitness</span>
-                <span>🛠️ HVAC Services</span>
-                <span>🍽️ Restaurants</span>
-                <span>⚖️ Law Firms</span>
+    <!-- Trusted By -->
+    <section class="trusted-by py-16 px-6">
+        <div class="max-w-1200 mx-auto">
+            <p class="trusted-label reveal">Trusted by</p>
+            <div class="trusted-logos reveal">
+                <div class="trusted-logo">OM Celebration</div>
+                <div class="trusted-logo">The Loft Studio Barcelona</div>
+                <div class="trusted-logo">On The Ground Sound</div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Case Study: OM Celebration -->
+    <section class="case-study py-24 px-6">
+        <div class="max-w-1200 mx-auto">
+            <div class="case-study-grid glass reveal">
+                <div class="case-content">
+                    <span class="case-tag">Case Study</span>
+                    <h2>From 0 to Automated Sales Platform in 60 Days</h2>
+                    <p>OM Celebration (e-commerce, Netherlands) needed a complete sales infrastructure: website, WhatsApp automation, order management, and payment flows. We built it from scratch.</p>
+                    <ul class="case-metrics">
+                        <li><strong>60 days</strong> from concept to live platform</li>
+                        <li><strong>100%</strong> automated order-to-delivery flow</li>
+                        <li><strong>WhatsApp + Email</strong> unified customer communication</li>
+                    </ul>
+                    <p class="case-insight">Same architecture now powers AI reception for clinics: missed-call capture → AI booking → automated follow-up → revenue recovery.</p>
+                </div>
+                <div class="case-visual">
+                    <div class="case-placeholder">Platform Architecture Diagram</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Services Bento Grid -->
     <section id="services" class="py-24 px-6 relative">

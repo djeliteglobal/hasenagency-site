@@ -427,6 +427,36 @@
         .back-link:hover { color: var(--text-primary); }
         .back-link:disabled { opacity: 0.3; cursor: default; }
 
+        /* Email capture step */
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 400px;
+            margin: 24px auto 0;
+        }
+        .email-form input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .email-form input:focus { border-color: var(--primary); }
+        .email-form input::placeholder { color: var(--text-secondary); opacity: 0.6; }
+        .email-hint {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
         /* Results */
         .results-hero { text-align: center; padding: 36px 24px 28px; }
         .results-hero .big-loss {
@@ -778,8 +808,24 @@
                 <button class="option" data-q="hours" data-val="sometimes" onclick="pickOption(this)"><span class="emoji">⚠️</span><span>Sometimes<span class="opt-hint">Depends on the day / who's on call</span></span></button>
                 <button class="option" data-q="hours" data-val="never" onclick="pickOption(this)"><span class="emoji">🌙</span><span>No, never<span class="opt-hint">Calls hit voicemail when closed</span></span></button>
             </div>
-            <div class="wizard-nav">
+<div class="wizard-nav">
                 <button class="back-link" onclick="goTo(4)">← Back</button>
+                <button class="btn btn-primary" onclick="goTo(5)">Next →</button>
+            </div>
+        </section>
+
+        <!-- EMAIL CAPTURE -->
+        <section class="step" id="step-email">
+            <span class="step-kicker">Final Step</span>
+            <h1>Get Your Recovery Plan</h1>
+            <p class="sub">We'll email your detailed numbers + the 3-step recovery plan. No spam.</p>
+            <div class="email-form">
+                <input type="email" id="emailInput" placeholder="your@email.com" autocomplete="email" required>
+                <button class="btn btn-primary btn-lg" onclick="submitEmail()">See My Losses →</button>
+            </div>
+            <p class="email-hint">By continuing, you agree to receive your calculation and occasional tips. Unsubscribe anytime.</p>
+            <div class="wizard-nav">
+                <button class="back-link" onclick="goTo(5)">← Back</button>
                 <span></span>
             </div>
         </section>
@@ -847,7 +893,8 @@
             calls: 25,
             miss: null,
             value: 500,
-            hours: null
+            hours: null,
+            email: null
         };
 
         const VALUE_DEFAULTS = {
@@ -869,11 +916,24 @@
             if (step >= 2 && !state.type) { showStep(1); return; }
             if (step >= 3 && state.miss === null && step === 3) { /* miss needed before results */ }
             if (step === 5 && state.miss === null) { showStep(3); return; }
-            if (step === 'results') {
+            if (step === 'email') {
                 if (!state.type || state.miss === null || !state.hours) {
                     if (!state.type) return showStep(1);
                     if (state.miss === null) return showStep(3);
                     return showStep(5);
+                }
+                showStep('email');
+                document.getElementById('progressLabel').textContent = 'Final Step';
+                document.getElementById('progressPct').textContent = '100%';
+                document.getElementById('progressFill').style.width = '100%';
+                return;
+            }
+            if (step === 'results') {
+                if (!state.type || state.miss === null || !state.hours || !state.email) {
+                    if (!state.type) return showStep(1);
+                    if (state.miss === null) return showStep(3);
+                    if (!state.hours) return showStep(5);
+                    return showStep('email');
                 }
                 renderResults();
                 showStep('results');
@@ -896,8 +956,11 @@
         function updateProgress(step) {
             const wrap = document.getElementById('progressWrap');
             wrap.style.display = 'block';
-            const pct = Math.round((step / 5) * 100);
-            document.getElementById('progressLabel').textContent = 'Question ' + step + ' of 5';
+            const totalSteps = 6;
+            const stepNum = step === 'email' ? 6 : parseInt(step, 10);
+            const pct = Math.round((stepNum / totalSteps) * 100);
+            const label = step === 'email' ? 'Final Step' : 'Question ' + stepNum + ' of 6';
+            document.getElementById('progressLabel').textContent = label;
             document.getElementById('progressPct').textContent = pct + '%';
             document.getElementById('progressFill').style.width = pct + '%';
         }
@@ -928,7 +991,7 @@
                 setTimeout(() => goTo(4), 250);
             } else if (q === 'hours') {
                 state.hours = val;
-                setTimeout(() => goTo('results'), 300);
+                setTimeout(() => goTo('email'), 300);
             }
         }
 
@@ -1001,13 +1064,26 @@
         }
 
         function restart() {
-            state.type = null; state.miss = null; state.hours = null;
+            state.type = null; state.miss = null; state.hours = null; state.email = null;
             state.calls = 25; state.value = 500;
             document.querySelectorAll('.option.selected').forEach(b => b.classList.remove('selected'));
             setCalls(25);
             document.getElementById('patientValue').value = 500;
+            document.getElementById('emailInput').value = '';
             document.getElementById('progressWrap').style.display = 'none';
             showStep('intro');
+        }
+
+        async function submitEmail() {
+            const input = document.getElementById('emailInput');
+            const email = input.value.trim().toLowerCase();
+            if (!email || !email.includes('@') || !email.includes('.')) {
+                input.focus(); input.style.borderColor = 'var(--primary)'; return;
+            }
+            state.email = email;
+            localStorage.setItem('hasen_calculator_email', email);
+            localStorage.setItem('hasen_calculator_data', JSON.stringify(state));
+            goTo('results');
         }
 
         // Keyboard: Enter advances on option steps
