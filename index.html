@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasen Agency | AI Websites & Automations</title>
-    <meta name="description" content="We Build Websites, AI Agents & Automations That Work While You Sleep">
+    <title>Hasen Agency | AI Reception for Clinics</title>
+    <meta name="description" content="Stop losing patients to missed calls. AI answers 24/7, books appointments, follows up. Free 7-day call audit.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
-    <meta property="og:title" content="Hasen Agency | AI Websites & Automations">
-    <meta property="og:description" content="We Build Websites, AI Agents & Automations That Work While You Sleep">
+    <meta property="og:title" content="Stop Losing Clients to Missed Calls | Hasen Agency">
+    <meta property="og:description" content="AI Reception for clinics. Free 7-day call audit. Then 14-day pilot. Money-back guarantee.">
     <meta property="og:type" content="website">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,13 +24,10 @@
             --secondary: #06b6d4;
             --text-primary: #fafafa;
             --text-secondary: #a1a1aa;
+            --accent-green: #25d366;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -46,34 +43,18 @@
             font-weight: 700;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(124, 58, 237, 0.3);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: rgba(124, 58, 237, 0.3); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
-        /* Layout & Utilities */
-        .container {
-            max-w-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         .max-w-1200 { max-width: 1200px; }
         .mx-auto { margin-left: auto; margin-right: auto; }
         .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
         .py-24 { padding-top: 6rem; padding-bottom: 6rem; }
         .text-center { text-align: center; }
         
-        /* Glassmorphism */
         .glass {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
@@ -84,657 +65,170 @@
 
         /* Navbar */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid transparent;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+            transition: all 0.3s ease; border-bottom: 1px solid transparent;
         }
         nav.scrolled {
             background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
         .nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 24px;
         }
         .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            letter-spacing: -0.5px;
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 800;
+            color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 6px;
         }
-        .logo-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 10px var(--primary);
-        }
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
+        .logo-dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links .btn { padding: 10px 20px; font-size: 0.85rem; }
 
         /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            outline: none;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
-        }
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 40%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: skewX(-20deg);
-            animation: shimmer 3s infinite linear;
-        }
-        @keyframes shimmer {
-            0% { left: -60%; }
-            100% { left: 150%; }
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(124, 58, 237, 0.6);
-        }
-        .btn-glass {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-        }
-        .btn-glass:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; outline: none; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4); }
+        .btn-primary::after { content: ''; position: absolute; top: -50%; left: -60%; width: 40%; height: 200%; background: rgba(255,255,255,0.2); transform: skewX(-20deg); animation: shimmer 3s infinite linear; }
+        @keyframes shimmer { 0% { left: -60%; } 100% { left: 150%; } }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(124, 58, 237, 0.6); }
+        .btn-glass { background: rgba(255,255,255,0.05); color: var(--text-primary); border: 1px solid var(--border); backdrop-filter: blur(10px); }
+        .btn-glass:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+        .btn-whatsapp { background: var(--accent-green); color: #062a14; font-weight: 700; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35); }
+        .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5); }
 
         /* Hero */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 80px;
-            text-align: center;
-            overflow: hidden;
-        }
-        .noise {
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            z-index: 1;
-            pointer-events: none;
-        }
-        .aurora {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            overflow: hidden;
-            mask-image: radial-gradient(ellipse at top, black 40%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse at top, black 40%, transparent 70%);
-        }
-        .auroraBlob1, .auroraBlob2 {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            animation: drift 20s infinite ease-in-out alternate;
-            opacity: 0.5;
-        }
-        .auroraBlob1 {
-            top: -10%; left: 20%;
-            width: 50vw; height: 50vw;
-            background: var(--primary);
-            animation-delay: 0s;
-        }
-        .auroraBlob2 {
-            top: 20%; right: 10%;
-            width: 40vw; height: 40vw;
-            background: var(--secondary);
-            animation-delay: -5s;
-        }
-        @keyframes drift {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(5%, 5%) scale(1.1); }
-            100% { transform: translate(-5%, 10%) scale(0.9); }
-        }
-        .grid-bg {
-            position: absolute;
-            inset: 0;
-            background-size: 50px 50px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            z-index: 0;
-            transform: perspective(1000px) rotateX(60deg) scale(2);
-            transform-origin: bottom center;
-            opacity: 0.3;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 900px;
-            padding: 0 24px;
-        }
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 100px;
-            color: var(--primary-light);
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 24px;
-            animation: pulse-glow 3s infinite alternate;
-        }
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 rgba(124, 58, 237, 0); }
-            100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.4); }
-        }
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 24px;
-            letter-spacing: -0.03em;
-        }
-        .gradient-text {
-            background: linear-gradient(to right, #fff, var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-secondary);
-            max-width: 650px;
-            margin: 0 auto 40px auto;
-        }
-        .hero-btns {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-        }
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding-top: 72px; text-align: center; overflow: hidden; }
+        .aurora { position: absolute; inset: 0; z-index: 0; overflow: hidden; mask-image: radial-gradient(ellipse at top, black 40%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at top, black 40%, transparent 70%); }
+        .auroraBlob1, .auroraBlob2 { position: absolute; border-radius: 50%; filter: blur(100px); animation: drift 20s infinite ease-in-out alternate; opacity: 0.5; }
+        .auroraBlob1 { top: -10%; left: 20%; width: 50vw; height: 50vw; background: var(--primary); }
+        .auroraBlob2 { top: 20%; right: 10%; width: 40vw; height: 40vw; background: var(--secondary); animation-delay: -5s; }
+        @keyframes drift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,40px) scale(1.15); } }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; padding: 0 24px; }
+        .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.35); border-radius: 999px; color: var(--primary-light); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px; }
+        .hero h1 { font-size: clamp(2.25rem, 5.5vw, 4rem); line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.02em; }
+        .hero .sub-headline { font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--text-secondary); max-width: 680px; margin: 0 auto 32px; line-height: 1.7; }
+        .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
         /* Trusted By */
-        .trusted-by {
-            padding: 40px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            background: rgba(0,0,0,0.3);
-        }
-        .trusted-label {
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-        .trusted-logos {
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            flex-wrap: wrap;
-        }
-        .trusted-logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            opacity: 0.7;
-            transition: opacity 0.3s;
-        }
+        .trusted-by { padding: 32px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.3); }
+        .trusted-label { text-align: center; font-size: 0.7rem; color: var(--text-secondary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+        .trusted-logos { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; align-items: center; }
+        .trusted-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--text-primary); opacity: 0.7; transition: opacity 0.3s; white-space: nowrap; }
         .trusted-logo:hover { opacity: 1; }
 
         /* Case Study */
         .case-study { background: transparent; }
-        .case-study-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            padding: 48px;
-            border-radius: 24px;
-        }
-        .case-tag {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-            background: rgba(124, 58, 237, 0.1);
-            padding: 6px 14px;
-            border-radius: 999px;
-        }
-        .case-content h2 {
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-        .case-content p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
-        .case-metrics {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .case-metrics li {
-            padding: 16px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-        }
-        .case-insight {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            border-left: 3px solid var(--primary);
-            padding-left: 16px;
-            font-style: italic;
-        }
-        .case-visual {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .case-placeholder {
-            width: 100%;
-            max-width: 400px;
-            aspect-ratio: 4/3;
-            background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.1));
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-family: 'Space Grotesk';
-        }
+        .case-study-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 48px; border-radius: 24px; }
+        .case-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; background: rgba(124,58,237,0.1); padding: 6px 14px; border-radius: 999px; }
+        .case-content h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.2; margin-bottom: 20px; }
+        .case-content p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; font-size: 1rem; }
+        .case-metrics { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+        .case-metrics li { padding: 14px 16px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 12px; text-align: center; }
+        .case-metrics strong { display: block; font-size: 1.25rem; font-family: 'Space Grotesk'; color: var(--text-primary); }
+        .case-metrics span { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+        .case-insight { font-size: 0.9rem; color: var(--text-secondary); border-left: 3px solid var(--primary); padding-left: 16px; font-style: italic; line-height: 1.6; }
+        .case-visual { display: flex; align-items: center; justify-content: center; }
+        .case-placeholder { width: 100%; max-width: 400px; aspect-ratio: 4/3; background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.1)); border: 1px solid var(--border); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-family: 'Space Grotesk'; font-size: 0.9rem; text-align: center; padding: 20px; }
+        @media (max-width: 900px) { .case-study-grid { grid-template-columns: 1fr; } .case-visual { display: none; } .case-metrics { grid-template-columns: 1fr; } .trusted-logos { gap: 32px; } }
 
-        @media (max-width: 900px) {
-            .case-study-grid { grid-template-columns: 1fr; }
-            .case-visual { display: none; }
-            .case-metrics { grid-template-columns: 1fr; }
-        }
+        /* How It Works - Simplified for Clinics */
+        .how-section { background: transparent; }
+        .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .how-card { padding: 32px; text-align: center; position: relative; }
+        .how-number { font-family: 'Space Grotesk'; font-size: 4rem; font-weight: 800; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.1); line-height: 1; margin-bottom: 16px; }
+        .how-card:hover .how-number { -webkit-text-stroke: 1px var(--primary); text-shadow: 0 0 20px rgba(124,58,237,0.3); }
+        .how-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .how-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+        @media (max-width: 900px) { .how-grid { grid-template-columns: 1fr; } }
 
-        /* Bento Grid */
-        .section-title {
-            text-align: center;
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 16px;
-        }
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 64px;
-            font-size: 1.1rem;
-        }
-        
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .bento-card {
-            padding: 32px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-        .bento-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.1);
-            border-color: rgba(124, 58, 237, 0.3);
-        }
-        .bento-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(124, 58, 237, 0.08), transparent 40%);
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .bento-card:hover::before {
-            opacity: 1;
-        }
-        .bento-content {
-            position: relative;
-            z-index: 10;
-        }
-        .bento-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-        }
-        .bento-title {
-            font-size: 1.25rem;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-        .bento-desc {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-        
-        /* Bento Card Specifically */
-        .card-1 { grid-column: span 2; min-height: 400px; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-2 { grid-column: span 1; }
-        .card-3 { grid-column: span 1; }
-        .card-4 { grid-column: span 1; }
-        .card-5 { grid-column: span 1; }
-        
-        .mockup-window {
-            background: #111;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-top: 24px;
-            padding: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transform: perspective(1000px) rotateX(15deg) rotateY(-10deg);
-            transition: transform 0.5s ease;
-        }
-        .card-1:hover .mockup-window {
-            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
-        }
-        .mockup-header {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 12px;
-        }
-        .mockup-dot { width: 10px; height: 10px; border-radius: 50%; background: #333; }
-        .mockup-dot:nth-child(1) { background: #ff5f56; }
-        .mockup-dot:nth-child(2) { background: #ffbd2e; }
-        .mockup-dot:nth-child(3) { background: #27c93f; }
-        .mockup-body { height: 120px; background: #1a1a1a; border-radius: 4px; padding: 12px;}
-        .mock-line { height: 8px; background: #333; border-radius: 4px; margin-bottom: 8px; width: 100%;}
-        .mock-line.short { width: 60%; }
-        
-        /* Chat bubble animation */
-        .chat-bubble {
-            background: var(--primary);
-            padding: 12px 16px;
-            border-radius: 16px 16px 16px 0;
-            display: inline-block;
-            font-size: 0.85rem;
-            margin-top: 20px;
-            box-shadow: 0 10px 20px rgba(124, 58, 237, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        .typewriter:after {
-            content: '|';
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* How it works */
-        .how-bg {
-            background: linear-gradient(to bottom, transparent, rgba(124, 58, 237, 0.05), transparent);
-        }
-        .step-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            position: relative;
-        }
-        .step-card {
-            position: relative;
-        }
-        .step-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 5rem;
-            font-weight: 800;
-            line-height: 1;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
-            margin-bottom: 16px;
-            transition: all 0.3s;
-        }
-        .step-card:hover .step-number {
-            -webkit-text-stroke: 1px var(--primary);
-            text-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
-        }
-        .connecting-line {
-            position: absolute;
-            top: 40px;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.05);
-            z-index: -1;
-        }
-        .connecting-line-fill {
-            position: absolute;
-            top: 0; left: 0; height: 100%; width: 0%;
-            background: linear-gradient(90deg, transparent, var(--primary), var(--secondary));
-            transition: width 1s ease-out;
-        }
-        
-        /* Results */
-        .results-section {
-            position: relative;
-            background: radial-gradient(circle at center, rgba(124, 58, 237, 0.1) 0%, transparent 60%);
-        }
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            text-align: center;
-        }
-        .counter-val {
-            font-size: 3.5rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 800;
-            background: linear-gradient(to bottom right, #fff, #999);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-        .counter-label {
-            color: var(--text-secondary);
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-        }
+        /* Offer Section - The Grand Slam Offer */
+        .offer-section { position: relative; }
+        .offer-card { max-width: 900px; margin: 0 auto; padding: 48px; position: relative; overflow: hidden; }
+        .offer-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(6,182,212,0.05)); z-index: 0; }
+        .offer-header { text-align: center; margin-bottom: 40px; position: relative; z-index: 1; }
+        .offer-badge { display: inline-block; padding: 8px 20px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; border-radius: 999px; margin-bottom: 20px; }
+        .offer-header h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin-bottom: 16px; }
+        .offer-header p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .offer-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; z-index: 1; }
+        .offer-step { padding: 28px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 16px; text-align: center; transition: all 0.3s; }
+        .offer-step:hover { border-color: rgba(124,58,237,0.5); transform: translateY(-4px); box-shadow: 0 16px 32px rgba(124,58,237,0.1); }
+        .offer-step-number { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-family: 'Space Grotesk'; font-size: 1.25rem; font-weight: 800; color: white; box-shadow: 0 8px 24px rgba(124,58,237,0.4); }
+        .offer-step h3 { font-size: 1.1rem; margin-bottom: 8px; }
+        .offer-step p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+        .offer-guarantee { margin-top: 40px; padding: 24px; background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.3); border-radius: 16px; text-align: center; position: relative; z-index: 1; }
+        .offer-guarantee strong { color: var(--accent-green); font-family: 'Space Grotesk'; font-size: 1.1rem; }
+        .offer-cta { text-align: center; margin-top: 32px; position: relative; z-index: 1; }
+        @media (max-width: 900px) { .offer-steps { grid-template-columns: 1fr; } .offer-card { padding: 32px 24px; } }
 
         /* Testimonials */
-        .testi-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-        .testi-card {
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 250px;
-        }
-        .quote {
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: #ddd;
-            margin-bottom: 24px;
-        }
-        .stars { color: var(--primary-light); font-size: 1.2rem; margin-bottom: 16px; }
-        .author { display: flex; align-items: center; gap: 12px; }
-        .avatar { width: 40px; height: 40px; border-radius: 50%; background: #333; }
-        .avatar-img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
-        .author-name { font-weight: 600; font-size: 0.95rem; }
-        .author-title { color: var(--text-secondary); font-size: 0.85rem; }
+        .testi-section { background: transparent; }
+        .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .testi-card { padding: 32px; display: flex; flex-direction: column; justify-content: space-between; min-height: 280px; }
+        .testi-quote { font-family: Georgia, serif; font-style: italic; font-size: 1.05rem; color: #ddd; line-height: 1.6; margin-bottom: 24px; flex: 1; }
+        .testi-stars { color: var(--primary-light); font-size: 1.1rem; margin-bottom: 16px; letter-spacing: 2px; }
+        .testi-author { display: flex; align-items: center; gap: 12px; }
+        .testi-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+        .testi-name { font-weight: 600; font-size: 0.95rem; }
+        .testi-role { color: var(--text-secondary); font-size: 0.8rem; }
+        @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
 
-        /* Pricing */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            align-items: center;
-        }
-        .pricing-card {
-            padding: 40px 32px;
-            position: relative;
-        }
-        .pricing-card.popular {
-            border: 1px solid var(--primary);
-            box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
-            transform: scale(1.05);
-            background: rgba(20, 20, 20, 0.8);
-        }
-        .popular-badge {
-            position: absolute;
-            top: -12px; left: 50%; transform: translateX(-50%);
-            background: var(--primary);
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 100px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .price-title { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 16px; }
-        .price-amount { font-size: 3rem; font-family: 'Space Grotesk', sans-serif; font-weight: 800; margin-bottom: 24px; }
-        .price-amount span { font-size: 1rem; color: var(--text-secondary); font-weight: 500; }
-        .feature-list { list-style: none; margin-bottom: 32px; }
-        .feature-list li { margin-bottom: 12px; color: #ccc; font-size: 0.95rem; display: flex; gap: 8px; }
-        .feature-list li::before { content: '✓'; color: var(--primary-light); font-weight: bold; }
-        
+        /* Pricing - Simple: Pilot + Retainer */
+        .pricing-section { background: transparent; }
+        .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 900px; margin: 0 auto; }
+        .pricing-card { padding: 40px 32px; position: relative; display: flex; flex-direction: column; }
+        .pricing-card.popular { border: 1px solid var(--primary); box-shadow: 0 0 40px rgba(124,58,237,0.15); background: rgba(20,20,20,0.9); }
+        .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: 1px; }
+        .pricing-title { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 16px; }
+        .pricing-price { font-size: 3rem; font-family: 'Space Grotesk'; font-weight: 800; margin-bottom: 8px; }
+        .pricing-price span { font-size: 1rem; color: var(--text-secondary); font-weight: 500; }
+        .pricing-sub { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 24px; }
+        .pricing-features { list-style: none; margin-bottom: 32px; flex: 1; }
+        .pricing-features li { margin-bottom: 14px; color: #ccc; font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+        .pricing-features li::before { content: '✓'; color: var(--primary-light); font-weight: bold; font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+        .pricing-btn { width: 100%; }
+        @media (max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; } }
+
         /* Final CTA */
-        .final-cta {
-            background: linear-gradient(135deg, rgba(124,58,237,0.2) 0%, rgba(6,182,212,0.1) 100%);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 100px 24px;
-            text-align: center;
-        }
-        .final-cta h2 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 16px; }
+        .final-cta { background: linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(6,182,212,0.08) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 24px; text-align: center; }
+        .final-cta h2 { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 16px; }
+        .final-cta p { color: rgba(255,255,255,0.6); font-size: 1.1rem; margin-bottom: 32px; max-width: 600px; margin-inline: auto; }
 
         /* Footer */
-        footer {
-            padding: 40px 24px;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .social-icons { display: flex; gap: 16px; }
-        .social-icons a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
+        footer { padding: 32px 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; gap: 16px; }
+        .footer-copy { color: var(--text-secondary); font-size: 0.85rem; }
+        .social-icons { display: flex; gap: 20px; align-items: center; }
+        .social-icons a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
         .social-icons a:hover { color: var(--text-primary); }
 
-        /* Global Animation Classes */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .bento-grid, .pricing-grid, .testi-grid, .results-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .card-1 { grid-column: span 2; }
-            .pricing-card.popular { transform: scale(1); }
-            .step-grid { grid-template-columns: 1fr; gap: 30px; }
-            .connecting-line {
-                top: 0; left: 40px; width: 2px; height: 100%; right: auto;
-            }
-            .connecting-line-fill { width: 100%; height: 0%; transition: height 1s; }
-        }
-        
+        /* Reveal Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
         @media (max-width: 768px) {
-            .bento-grid, .pricing-grid, .testi-grid, .results-grid {
-                grid-template-columns: 1fr;
-            }
-            .card-1 { grid-column: span 1; }
-            .nav-links a { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            footer { flex-direction: column; gap: 20px; text-align: center; }
-            .btn { width: 100%; margin-bottom: 10px; }
-            .hero-btns { flex-direction: column; gap: 0;}
+            .nav-links a:not(.btn) { display: none; }
+            .hero-btns { flex-direction: column; gap: 12px; }
+            .hero-btns .btn { width: 100%; }
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Noise Texture -->
-    <div class="noise"></div>
-
     <!-- Navbar -->
     <nav id="navbar">
         <div class="nav-inner">
-            <a href="#" class="logo">
-                Hasen Agency <span class="logo-dot"></span>
-            </a>
+            <a href="#" class="logo">Hasen<span class="logo-dot"></span></a>
             <div class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#results">Results</a>
-                <a href="#pricing">Pricing</a>
-                <a href="/calculator">Calculator</a>
+                <a href="#how">How It Works</a>
+                <a href="#offer">The Offer</a>
+                <a href="#proof">Results</a>
+                <a href="/calculator" class="btn btn-primary">Calculate Your Loss</a>
             </div>
-            <a href="#contact" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem;">Get Started</a>
         </div>
     </nav>
 
@@ -744,24 +238,21 @@
             <div class="auroraBlob1"></div>
             <div class="auroraBlob2"></div>
         </div>
-        <div class="grid-bg"></div>
         
         <div class="hero-content reveal">
-            <div class="badge">
-                🤖 AI Reception for Clinics
-            </div>
-            <h1>Stop Losing Patients to Missed Calls</h1>
-            <p>AI answers 24/7, books appointments, follows up. Your front desk keeps every call.</p>
+            <div class="badge">🤖 AI Reception for Clinics</div>
+            <h1>Stop Losing Clients to Missed Calls</h1>
+            <p class="sub-headline">AI answers 24/7, books appointments, follows up. Your front desk keeps every call — no hiring, no training, no headaches.</p>
             <div class="hero-btns">
-                <a href="/calculator" class="btn btn-primary">Calculate your $$$ loss</a>
-                <a href="#" class="btn btn-glass" onclick="bookCallEmail(event)">Book a Call</a>
+                <a href="/calculator" class="btn btn-primary">Calculate Your $$$ Loss</a>
+                <a href="#offer" class="btn btn-glass">See the Offer</a>
             </div>
         </div>
     </section>
 
     <!-- Trusted By -->
-    <section class="trusted-by py-16 px-6">
-        <div class="max-w-1200 mx-auto">
+    <section class="trusted-by">
+        <div class="container">
             <p class="trusted-label reveal">Trusted by</p>
             <div class="trusted-logos reveal">
                 <div class="trusted-logo">OM Celebration</div>
@@ -771,199 +262,137 @@
         </div>
     </section>
 
-    <!-- Case Study: OM Celebration -->
-    <section class="case-study py-24 px-6">
-        <div class="max-w-1200 mx-auto">
+    <!-- Case Study: OM Celebration (relevant to clinics) -->
+    <section class="case-study py-24 px-6" id="proof">
+        <div class="container">
             <div class="case-study-grid glass reveal">
                 <div class="case-content">
                     <span class="case-tag">Case Study</span>
-                    <h2>From 0 to Automated Sales Platform in 60 Days</h2>
-                    <p>OM Celebration (e-commerce, Netherlands) needed a complete sales infrastructure: website, WhatsApp automation, order management, and payment flows. We built it from scratch.</p>
+                    <h2>From $0 to Predictable Sales System in 60 Days</h2>
+                    <p>OM Celebration (Netherlands) had a beautiful brand but no online sales engine. We built their complete digital infrastructure: website, automated lead capture, WhatsApp + email follow-up, and payment flow — all connected so no lead falls through.</p>
                     <ul class="case-metrics">
-                        <li><strong>60 days</strong> from concept to live platform</li>
-                        <li><strong>100%</strong> automated order-to-delivery flow</li>
-                        <li><strong>WhatsApp + Email</strong> unified customer communication</li>
+                        <li><strong>60 days</strong><span>to live system</span></li>
+                        <li><strong>100%</strong><span>automated follow-up</span></li>
+                        <li><strong>WhatsApp + Email</strong><span>unified</span></li>
                     </ul>
-                    <p class="case-insight">Same architecture now powers AI reception for clinics: missed-call capture → AI booking → automated follow-up → revenue recovery.</p>
+                    <p class="case-insight">Same architecture now powers AI reception for clinics: missed call → AI answers → books appointment → automated reminders → patient shows up. Plug, play, profit.</p>
                 </div>
                 <div class="case-visual">
-                    <div class="case-placeholder">Platform Architecture Diagram</div>
+                    <div class="case-placeholder">Sales System Architecture<br>Website → AI Chat → WhatsApp/Email → Calendar → CRM</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Bento Grid -->
-    <section id="services" class="py-24 px-6 relative">
-        <div class="max-w-1200 mx-auto">
-            <h2 class="section-title reveal">Built for Scale</h2>
-            <p class="section-subtitle reveal">Everything you need to automate your growth</p>
-            
-            <div class="bento-grid">
-                <!-- Card 1 -->
-                <div class="bento-card glass card-1 reveal" style="transition-delay: 0.1s">
-                    <div class="bento-content">
-                        <h3 class="bento-title">Custom Websites</h3>
-                        <p class="bento-desc max-w-[400px]">We build lightning-fast, conversion-optimized websites that turn visitors into paying clients. Built without code bloat, ranking higher on Google.</p>
-                    </div>
-                    <div class="mockup-window">
-                        <div class="mockup-header">
-                            <div class="mockup-dot"></div>
-                            <div class="mockup-dot"></div>
-                            <div class="mockup-dot"></div>
-                        </div>
-                        <div class="mockup-body">
-                            <div class="mock-line"></div>
-                            <div class="mock-line"></div>
-                            <div class="mock-line short"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bento-card glass card-2 reveal" style="transition-delay: 0.2s">
-                    <div class="bento-content">
-                        <div class="bento-icon">💬</div>
-                        <h3 class="bento-title">AI Chatbots</h3>
-                        <p class="bento-desc">Smart agents that qualify leads, schedule appointments, and provide 24/7 support.</p>
-                        <div class="chat-bubble">
-                            <span id="chat-text"></span><span class="typewriter"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bento-card glass card-3 reveal" style="transition-delay: 0.3s">
-                    <div class="bento-content">
-                        <div class="bento-icon">⚡</div>
-                        <h3 class="bento-title">Workflow Automations</h3>
-                        <p class="bento-desc">Connect thousands of apps. Trigger emails, update spreadsheets, and alert your team automatically.</p>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="bento-card glass card-4 reveal" style="transition-delay: 0.4s">
-                    <div class="bento-content">
-                        <div class="bento-icon">📈</div>
-                        <h3 class="bento-title">Lead Generation</h3>
-                        <p class="bento-desc">Capture and nurture leads on autopilot.</p>
-                        <div style="margin-top: 16px; font-family: 'Space Grotesk'; font-size: 2rem; font-weight: 800; color: var(--primary-light);">
-                            <span class="counter" data-target="1000">0</span>+ <span style="font-size: 1rem; color: var(--text-secondary);">leads/mo</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="bento-card glass card-5 reveal" style="transition-delay: 0.5s">
-                    <div class="bento-content">
-                        <div class="bento-icon">🔗</div>
-                        <h3 class="bento-title">CRM Integration</h3>
-                        <p class="bento-desc">Connect your tools. Automate your follow-ups with HubSpot, Salesforce, or GoHighLevel seamlessly.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How it Works -->
-    <section class="py-24 px-6 how-bg relative">
-        <div class="max-w-1200 mx-auto">
+    <!-- How It Works -->
+    <section id="how" class="how-section py-24 px-6">
+        <div class="container">
             <h2 class="section-title reveal">How It Works</h2>
-            <p class="section-subtitle reveal">A streamlined process to get you automated fast.</p>
+            <p class="section-subtitle reveal">Three steps. Done in days, not months.</p>
             
-            <div class="step-grid reveal">
-                <div class="connecting-line"><div class="connecting-line-fill" id="flow-line"></div></div>
-                
-                <div class="step-card">
-                    <div class="step-number">01</div>
-                    <h3 class="font-display" style="font-size: 1.25rem; margin-bottom: 8px;">Tell us your business</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">We learn your brand, goals, and audience to tailor the perfect solution.</p>
+            <div class="how-grid reveal">
+                <div class="how-card glass">
+                    <div class="how-number">01</div>
+                    <h3>Free 7-Day Call Audit</h3>
+                    <p>We forward your calls to our system for 7 days. You see exactly how many you miss, when, and what it costs — in dollars. No AI turned on yet. Just data.</p>
                 </div>
                 
-                <div class="step-card">
-                    <div class="step-number">02</div>
-                    <h3 class="font-display" style="font-size: 1.25rem; margin-bottom: 8px;">We build everything</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Website, AI agent, automations — done in days, not months.</p>
+                <div class="how-card glass">
+                    <div class="how-number">02</div>
+                    <h3>14-Day Paid Pilot ($750)</h3>
+                    <p>We activate AI reception: answers 24/7, books into your calendar, sends reminders. You measure real appointments booked and revenue recovered. Money-back if it doesn't 3x your investment.</p>
                 </div>
                 
-                <div class="step-card">
-                    <div class="step-number">03</div>
-                    <h3 class="font-display" style="font-size: 1.25rem; margin-bottom: 8px;">You get results</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Leads, bookings, and revenue on autopilot. Watch your business scale without the extra headcount.</p>
+                <div class="how-card glass">
+                    <div class="how-number">03</div>
+                    <h3>Month-to-Month Retainer</h3>
+                    <p>Keep the system running. We optimize weekly. Cancel anytime. No contracts. Average clinic recovers $15k–$60k/month in previously lost revenue.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Results Section -->
-    <section id="results" class="py-24 px-6 results-section">
-        <div class="max-w-1200 mx-auto">
-            <div class="results-grid">
-                <div class="reveal" style="transition-delay: 0.1s">
-                    <div class="counter-val"><span class="counter" data-target="150">0</span>+</div>
-                    <div class="counter-label">Websites Delivered</div>
+    <!-- The Offer - Grand Slam -->
+    <section id="offer" class="offer-section py-24 px-6">
+        <div class="container">
+            <div class="offer-card glass">
+                <div class="offer-header">
+                    <div class="offer-badge">The HMA Recovery Pilot</div>
+                    <h2>We Only Get Paid When You Recover Revenue</h2>
+                    <p>Free audit → $750 pilot → money-back guarantee. You risk nothing. We build, connect, and optimize the AI that answers every call you miss.</p>
                 </div>
-                <div class="reveal" style="transition-delay: 0.2s">
-                    <div class="counter-val"><span class="counter" data-target="10">0</span>K+</div>
-                    <div class="counter-label">Leads Generated</div>
+                
+                <div class="offer-steps">
+                    <div class="offer-step">
+                        <div class="offer-step-number">1</div>
+                        <h3>7-Day Free Audit</h3>
+                        <p>We track every call. You get a dashboard showing: calls missed, peak miss hours, estimated revenue loss. Zero cost. Zero commitment.</p>
+                    </div>
+                    <div class="offer-step">
+                        <div class="offer-step-number">2</div>
+                        <h3>14-Day AI Pilot</h3>
+                        <p>AI goes live. Books appointments. Follows up. You see real patients in chairs. $750 — refunded 100% if you don't recover 3× ($2,250+) in 14 days.</p>
+                    </div>
+                    <div class="offer-step">
+                        <div class="offer-step-number">3</div>
+                        <h3>Keep It Running</h3>
+                        <p>Month-to-month. We optimize scripts, routing, follow-ups weekly. Cancel anytime. Typical ROI: 15–40× pilot cost.</p>
+                    </div>
                 </div>
-                <div class="reveal" style="transition-delay: 0.3s">
-                    <div class="counter-val"><span class="counter" data-target="98">0</span>%</div>
-                    <div class="counter-label">Client Satisfaction</div>
+
+                <div class="offer-guarantee">
+                    <strong>🛡️ Money-Back Guarantee:</strong> If the pilot doesn't generate at least $2,250 in recovered revenue (3× your $750), we refund 100% — and you keep the call audit data & our follow-up scripts.
                 </div>
-                <div class="reveal" style="transition-delay: 0.4s">
-                    <div class="counter-val"><span class="counter" data-target="48">0</span>hr</div>
-                    <div class="counter-label">Average Delivery</div>
+
+                <div class="offer-cta">
+                    <a href="/calculator" class="btn btn-primary btn-lg">Calculate Your Loss → Start Free Audit</a>
+                    <p style="margin-top: 16px; color: var(--text-secondary); font-size: 0.9rem;">Takes 60 seconds. No email required to see your number.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="py-24 px-6 relative">
-        <div class="max-w-1200 mx-auto">
-            <h2 class="section-title reveal">Trusted by Leaders</h2>
-            <p class="section-subtitle reveal">Don't just take our word for it.</p>
+    <section id="testimonials" class="testi-section py-24 px-6">
+        <div class="container">
+            <h2 class="section-title reveal">What Clients Say</h2>
+            <p class="section-subtitle reveal">Real results from businesses we've built systems for.</p>
             
             <div class="testi-grid">
-                <div class="testi-card glass reveal" style="transition-delay: 0.1s">
-                    <div>
-                        <div class="stars">★★★★★</div>
-                        <div class="quote">"Their services exceeded the expectations. They helped me grow my ROI to double the amount of what I was making in 5 months."</div>
-                    </div>
-                    <div class="author">
-                        <img src="assets/ramiro.png" alt="Ramiro" class="avatar-img">
+                <div class="testi-card glass reveal">
+                    <div class="testi-stars">★★★★★</div>
+                    <div class="testi-quote">"When I started my business I couldn't get much sales on my site, and Kabir and his team helped me ramp up by creating the whole online side of the business."</div>
+                    <div class="testi-author">
+                        <div class="testi-avatar" style="background: linear-gradient(135deg, #7c3aed, #06b6d4)"></div>
                         <div>
-                            <div class="author-name">Ramiro Ochova</div>
-                            <div class="author-title">Founder - The Loft Studio Barcelona</div>
+                            <div class="testi-name">Machiel van der Laan</div>
+                            <div class="testi-role">Founder — OM Celebration (Netherlands)</div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="testi-card glass reveal" style="transition-delay: 0.2s">
-                    <div>
-                        <div class="stars">★★★★★</div>
-                        <div class="quote">"Hasen's Social Media & Marketing services have helped me connect and grow my audience and clients on a daily basis to the point that I have people contacting me every single day."</div>
-                    </div>
-                    <div class="author">
-                        <img src="assets/olaf.png" alt="Olaf" class="avatar-img">
+                <div class="testi-card glass reveal">
+                    <div class="testi-stars">★★★★★</div>
+                    <div class="testi-quote">"We worked with Kabir Hasen and his team to make On The Ground Sound a great social platform for musicians. They brought all the users by managing socials and having a consistent marketing strategy."</div>
+                    <div class="testi-author">
+                        <img src="assets/olaf.png" alt="Olaf" class="testi-avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="testi-avatar" style="display:none; background: linear-gradient(135deg, #06b6d4, #7c3aed); align-items:center; justify-content:center; color:white; font-weight:800; font-size:1.2rem;">OM</div>
                         <div>
-                            <div class="author-name">Olaf Maltha</div>
-                            <div class="author-title">Founder & CEO - On The Ground Sound</div>
+                            <div class="testi-name">Olaf Maltha</div>
+                            <div class="testi-role">Founder & CEO — On The Ground Sound</div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="testi-card glass reveal" style="transition-delay: 0.3s">
-                    <div>
-                        <div class="stars">★★★★★</div>
-                        <div class="quote">"We fired our old answering service. The AI chatbot handles 100% of our after-hours HVAC emergencies flawlessly."</div>
-                    </div>
-                    <div class="author">
-                        <div class="avatar" style="background: linear-gradient(135deg, #43e97b, #38f9d7)"></div>
+                <div class="testi-card glass reveal">
+                    <div class="testi-stars">★★★★★</div>
+                    <div class="testi-quote">"Hasen Agency has helped my brand and business become unstoppable. They made a great ads campaign that established the bases that brings me clients to this day."</div>
+                    <div class="testi-author">
+                        <img src="assets/ramiro.png" alt="Ramiro" class="testi-avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="testi-avatar" style="display:none; background: linear-gradient(135deg, #f472b6, #a855f7); align-items:center; justify-content:center; color:white; font-weight:800; font-size:1.2rem;">RL</div>
                         <div>
-                            <div class="author-name">David O'Connor</div>
-                            <div class="author-title">HVAC Solutions CEO</div>
+                            <div class="testi-name">Ramiro Ochova</div>
+                            <div class="testi-role">Founder — The Loft Studio Barcelona</div>
                         </div>
                     </div>
                 </div>
@@ -971,196 +400,69 @@
         </div>
     </section>
 
-    <!-- Bundle Pricing Banner -->
-    <section id="bundle-banner" style="padding: 48px 24px; text-align: center; background: linear-gradient(135deg, #1a0b2e 0%, #0f0a14 100%);">
-        <div style="max-width: 720px; margin: 0 auto; padding: 32px; background: rgba(255,255,255,0.03); border: 1px solid rgba(124,58,237,0.4); border-radius: 20px; backdrop-filter: blur(12px); box-shadow: 0 0 60px rgba(124,58,237,0.15);">
-            <div style="display: inline-block; padding: 6px 14px; background: linear-gradient(135deg, #7c3aed, #a855f7); border-radius: 999px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; color: #fff; margin-bottom: 16px; text-transform: uppercase;">Bundle Deal</div>
-            <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; line-height: 1.25; margin-bottom: 12px; color: #fafafa;">Starter + SMS — Launch with a lead-capture website AND text messaging for just <span style="background: linear-gradient(135deg, #c084fc, #e879f9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">$129/mo</span>.</h2>
-            <p style="color: #a1a1aa; font-size: 1rem; line-height: 1.6; margin-bottom: 8px;">That's the $99 Starter + $49 SMS add-on, but bundled for $129 — <strong style="color: #fafafa;">you save $19/mo, $228/yr.</strong></p>
-            <p style="color: #888; font-size: 0.9rem; margin-top: 12px;">Includes setup + 100 SMS credits/month (then $0.05/credit, avg 2¢/text).</p>
-            <a href="#pricing" class="btn btn-primary" style="display: inline-block; margin-top: 24px; padding: 14px 32px; font-size: 1rem;">Choose Bundle</a>
-        </div>
-    </section>
-
-    <!-- Founding Deal Banner -->
-    <div class="founding-deal-banner reveal" style="background: linear-gradient(135deg, #7c3aed 0%, #06b2eb 100%); margin: 40px auto; max-width: 1000px; border-radius: 16px; padding: 24px 32px; text-align: center;">
-        <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px;">
-            <span style="font-size: 1.5rem;">⚡</span>
-            <span style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 100px;">LIMITED TIME</span>
-            <span style="font-size: 1.5rem;">⚡</span>
-        </div>
-        <h3 style="color: white; font-size: 1.5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 800; margin-bottom: 8px;">Founding Deal — 10 spots remaining</h3>
-        <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 16px;">
-            Lock in 30% off any plan + <strong>zero setup fees</strong>. Only 10 Founding Deal spots available.
-        </p>
-        <div id="founding-counter" style="color: white; font-size: 1.25rem; font-family: 'Space Grotesk', sans-serif; font-weight: 800; margin-top: 12px;">
-            <span id="spots-left">10</span> spots left — <span id="time-left">24:00:00</span> remaining
-        </div>
-    </div>
-
-    <!-- Pricing -->
-    <section id="pricing" class="py-24 px-6">
-        <div class="max-w-1200 mx-auto">
-            <h2 class="section-title reveal">Simple, Transparent Pricing</h2>
-            <p class="section-subtitle reveal">Invest in automation. Save on payroll.</p>
+    <!-- Pricing: Simple Pilot + Retainer -->
+    <section id="pricing" class="pricing-section py-24 px-6">
+        <div class="container">
+            <h2 class="section-title reveal">Simple Pricing</h2>
+            <p class="section-subtitle reveal">No hidden fees. No annual contracts. Cancel anytime.</p>
             
-            <div class="pricing-grid" style="grid-template-columns: repeat(4, 1fr);">
-                <!-- Starter -->
-                <div class="pricing-card glass reveal" style="transition-delay: 0.1s">
-                    <h3 class="price-title font-display">Starter</h3>
-                    <div class="price-amount">$99<span>/mo</span></div>
-                    <ul class="feature-list">
-                        <li>Premium Template Website</li>
-                        <li>Basic Knowledge Base AI</li>
-                        <li>Contact Form Integration</li>
-                        <li>Standard Support</li>
+            <div class="pricing-grid">
+                <!-- Pilot -->
+                <div class="pricing-card glass reveal">
+                    <h3 class="pricing-title">14-Day Recovery Pilot</h3>
+                    <div class="pricing-price">$750<span>/one-time</span></div>
+                    <p class="pricing-sub">Everything included. Money-back guarantee.</p>
+                    <ul class="pricing-features">
+                        <li>Free 7-day call audit (value: $500)</li>
+                        <li>AI receptionist live 24/7</li>
+                        <li>Books appointments into your calendar</li>
+                        <li>Automated SMS/Email reminders</li>
+                        <li>Weekly revenue recovery report</li>
+                        <li>Full setup & integration (24h)</li>
+                        <li>100% refund if <3× ROI in 14 days</li>
                     </ul>
-                    <a href="#contact" class="btn btn-glass" style="width: 100%;">Choose Starter</a>
+                    <a href="/calculator" class="btn btn-primary pricing-btn">Start Free Audit →</a>
                 </div>
                 
-                <!-- Bundle (Starter + SMS) - Most Popular -->
-                <div class="pricing-card glass popular reveal" style="transition-delay: 0.2s">
-                    <div class="popular-badge">Best Value</div>
-                    <h3 class="price-title font-display text-white">Starter + SMS Bundle</h3>
-                    <div class="price-amount">$129<span>/mo</span></div>
-                    <div style="color: #10b981; font-size: 0.9rem; margin-bottom: 12px; font-weight: 600;">Save $19/month vs. buying separately</div>
-                    <ul class="feature-list">
-                        <li>Premium Template Website + SMS Integration</li>
-                        <li>Advanced Lead Capture via Text</li>
-                        <li>Automated Lead Routing & Response</li>
-                        <li>Priority Support</li>
-                        <li style="color: #10b981;">Includes 100 SMS credits/month</li>
+                <!-- Retainer -->
+                <div class="pricing-card glass popular reveal">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3 class="pricing-title">Monthly Retainer</h3>
+                    <div class="pricing-price">$997<span>/mo</span></div>
+                    <p class="pricing-sub">After pilot. Month-to-month. Cancel anytime.</p>
+                    <ul class="pricing-features">
+                        <li>AI receptionist 24/7/365</li>
+                        <li>Unlimited calls & appointments</li>
+                        <li>Weekly script optimization</li>
+                        <li>Advanced analytics dashboard</li>
+                        <li>CRM sync (GoHighLevel, HubSpot, etc.)</li>
+                        <li>Priority support (Slack + phone)</li>
+                        <li>Quarterly strategy review</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Choose Bundle</a>
-                </div>
-                
-                <!-- Growth -->
-                <div class="pricing-card glass reveal" style="transition-delay: 0.3s">
-                    <h3 class="price-title font-display">Growth</h3>
-                    <div class="price-amount">$297<span>/mo</span></div>
-                    <ul class="feature-list">
-                        <li>Custom Designed Website</li>
-                        <li>Advanced Sales AI Agent</li>
-                        <li>Automated Lead Capture</li>
-                        <li>Basic CRM Integration</li>
-                        <li>Priority Support</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-glass" style="width: 100%;">Choose Growth</a>
-                </div>
-                
-                <!-- Enterprise -->
-                <div class="pricing-card glass reveal" style="transition-delay: 0.4s">
-                    <h3 class="price-title font-display">Enterprise</h3>
-                    <div class="price-amount">Custom</div>
-                    <ul class="feature-list">
-                        <li>Full Funnel Architecture</li>
-                        <li>Custom Automation Workflows</li>
-                        <li>Complex CRM/ERP Integration</li>
-                        <li>Dedicated Account Manager</li>
-                        <li>24/7 SLA Support</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-glass" style="width: 100%;">Contact Sales</a>
+                    <a href="#contact" class="btn btn-primary pricing-btn">Lock In After Pilot</a>
                 </div>
             </div>
         </div>
     </section>
-            <!-- Add-ons -->
-            <div class="addons-section" style="margin-top: 60px; padding: 40px 0; border-top: 1px solid var(--border);">
-                <h3 class="section-title text-center" style="margin-bottom: 30px;">Popular Add-ons</h3>
-                <p class="section-subtitle text-center" style="margin-bottom: 40px;">Customize your automation stack</p>
-                
-                <div class="pricing-grid">
-                    <!-- SMS Integration -->
-                    <div class="pricing-card glass reveal" style="transition-delay: 0.1s">
-                        <h3 class="price-title font-display">SMS Integration</h3>
-                        <div class="price-amount">$49<span>/mo</span></div>
-                        <ul class="feature-list">
-                            <li>Automated SMS reminders</li>
-                            <li>Two-way messaging</li>
-                            <li>Appointment confirmations</li>
-                            <li>Follow-up sequences</li>
-                        </ul>
-                        <button class="btn btn-glass" style="width: 100%;" onclick="alert('SMS addon selected!')">Add to Plan</button>
-                    </div>
-                    
-                    <!-- Reputation Management -->
-                    <div class="pricing-card glass reveal" style="transition-delay: 0.2s">
-                        <h3 class="price-title font-display">Reputation Management</h3>
-                        <div class="price-amount">$79<span>/mo</span></div>
-                        <ul class="feature-list">
-                            <li>Google My Business monitoring</li>
-                            <li>Review request automation</li>
-                            <li>Review response generator</li>
-                            <li>Reputation score tracking</li>
-                        </ul>
-                        <button class="btn btn-glass" style="width: 100%;" onclick="alert('Reputation addon selected!')">Add to Plan</button>
-                    </div>
-                    
-                    <!-- Social Media Management -->
-                    <div class="pricing-card glass reveal" style="transition-delay: 0.3s">
-                        <h3 class="price-title font-display">Social Media Management</h3>
-                        <div class="price-amount">$99<span>/mo</span></div>
-                        <ul class="feature-list">
-                            <li>Automated posting</li>
-                            <li>Content calendar</li>
-                            <li>Engagement tracking</li>
-                            <li>Hashtag optimization</li>
-                        </ul>
-                        <button class="btn btn-glass" style="width: 100%;" onclick="alert('Social Media addon selected!')">Add to Plan</button>
-                    </div>
-                    
-                    <!-- Priority Support -->
-                    <div class="pricing-card glass reveal" style="transition-delay: 0.4s">
-                        <h3 class="price-title font-display">Priority Support</h3>
-                        <div class="price-amount">$29<span>/mo</span></div>
-                        <ul class="feature-list">
-                            <li>Dedicated Slack channel</li>
-                            <li>2-hour response SLA</li>
-                            <li>Priority feature requests</li>
-                            <li>Quarterly strategy calls</li>
-                        </ul>
-                        <button class="btn btn-glass" style="width: 100%;" onclick="alert('Priority Support addon selected!')">Add to Plan</button>
-                    </div>
-                    
-                    <!-- Custom Domain -->
-                    <div class="pricing-card glass reveal" style="transition-delay: 0.5s">
-                        <h3 class="price-title font-display">Custom Domain</h3>
-                        <div class="price-amount">$19<span>/mo</span></div>
-                        <ul class="feature-list">
-                            <li>Branded email addresses</li>
-                            <li>Custom website URLs</li>
-                            <li>SSL certificate management</li>
-                            <li>Domain analytics</li>
-                        </ul>
-                        <button class="btn btn-glass" style="width: 100%;" onclick="alert('Custom Domain addon selected!')">Add to Plan</button>
-                    </div>
-                </div>
-                <p style="text-align: center; margin-top: 30px; color: var(--text-secondary); font-size: 0.9rem;">
-                    Add any combination of add-ons to your chosen plan. All add-ons are billed monthly and can be cancelled anytime.
-                </p>
-            </div>
-
 
     <!-- Final CTA -->
     <section id="contact" class="final-cta reveal">
-        <div class="max-w-1200 mx-auto">
-            <h2 class="font-display">Ready to Automate Your Business?</h2>
-            <p style="color: rgba(255,255,255,0.7); font-size: 1.25rem; margin-bottom: 40px; max-width: 600px; margin-inline: auto;">Let's build something that works while you sleep.</p>
-            <a href="mailto:hello@hasenagency.site" class="btn btn-primary" style="padding: 16px 40px; font-size: 1.1rem;">Start Your Project &rarr;</a>
-            <p style="color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-top: 24px;">Free consultation &middot; No commitment &middot; Response in 24hrs</p>
+        <div class="container">
+            <h2>Ready to Stop Losing Patients?</h2>
+            <p>Calculate your loss in 60 seconds. Start your free 7-day audit. Only 5 pilot spots/month.</p>
+            <a href="/calculator" class="btn btn-primary" style="padding: 18px 48px; font-size: 1.1rem;">Calculate My Loss →</a>
+            <p style="margin-top: 20px; color: rgba(255,255,255,0.4); font-size: 0.9rem;">Free audit · No credit card · 5 spots/month · Response in 24hrs</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-copy" style="color: var(--text-secondary); font-size: 0.9rem;">
-            Hasen Agency &copy; 2026. All rights reserved.
-        </div>
+        <div class="footer-copy">Hasen Agency &copy; 2026. All rights reserved.</div>
         <div class="social-icons">
-            <a href="#services">Services</a>
+            <a href="#how">How It Works</a>
+            <a href="#offer">The Offer</a>
+            <a href="#proof">Results</a>
             <a href="/calculator">Calculator</a>
-            <a href="#contact">Contact</a>
-            <a href="#">Privacy</a>
             <span style="color: var(--border);">|</span>
             <a href="#">𝕏</a>
             <a href="#">In</a>
@@ -1173,412 +475,33 @@
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            if (window.scrollY > 20) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
         });
 
-        // Intersection Observer for reveal animations & counters
+        // Intersection Observer for reveal animations
         const revealElements = document.querySelectorAll('.reveal');
-        const counters = document.querySelectorAll('.counter');
-        const flowLine = document.getElementById('flow-line');
-        
-        let flowLineAnimated = false;
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    
-                    // Trigger counters if they are inside the revealed element
-                    const targetCounters = entry.target.querySelectorAll('.counter');
-                    targetCounters.forEach(counter => {
-                        animateCounter(counter);
-                    });
-                    
-                    // Trigger counter if the reveal element itself is a counter container
-                    if(entry.target.querySelector('.counter')) {
-                        let c = entry.target.querySelector('.counter');
-                        if (!c.classList.contains('counted')) {
-                            animateCounter(c);
-                            c.classList.add('counted');
-                        }
-                    }
-
-                    // Trigger flow line specifically
-                    if (entry.target.classList.contains('step-grid') && !flowLineAnimated) {
-                        flowLineAnimated = true;
-                        if(window.innerWidth > 992) {
-                            flowLine.style.width = '100%';
-                        } else {
-                            flowLine.style.height = '100%';
-                        }
-                    }
-
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
-
         revealElements.forEach(el => observer.observe(el));
 
-        // Counter Animation
-        function animateCounter(counter) {
-            const target = +counter.getAttribute('data-target');
-            const duration = 2000;
-            const stepTime = Math.abs(Math.floor(duration / target));
-            let current = 0;
-            
-            // ease out cubic
-            const easeOut = t => 1 - Math.pow(1 - t, 3);
-            let startTime = null;
-
-            function step(timestamp) {
-                if (!startTime) startTime = timestamp;
-                const progress = timestamp - startTime;
-                const percentage = Math.min(progress / duration, 1);
-                
-                current = Math.floor(target * easeOut(percentage));
-                counter.innerText = current;
-
-                if (percentage < 1) {
-                    window.requestAnimationFrame(step);
-                } else {
-                    counter.innerText = target;
-                }
-            }
-            window.requestAnimationFrame(step);
-        }
-
-        // Chatbot typing animation
-        const chatText = document.getElementById('chat-text');
-        const textToType = "Hola! ¿En qué puedo ayudarte?";
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < textToType.length) {
-                chatText.innerHTML += textToType.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            } else {
-                setTimeout(() => {
-                    chatText.innerHTML = "";
-                    i = 0;
-                    typeWriter();
-                }, 4000);
-            }
-        }
-        
-        // Start typewriter after a short delay
-        setTimeout(typeWriter, 1500);
-
-        // Bento card mouse effect
-        document.querySelectorAll('.bento-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-
-        // ===========================================
-        // EXIT SURVEY IMPLEMENTATION
-        // ===========================================
-        
-        const EXIT_SURVEY_KEY = 'hasen_exit_survey_shown';
-        const EXIT_SURVEY_RESPONSES_KEY = 'hasen_exit_survey_responses';
-        
-        function hasSeenExitSurvey() {
-            return localStorage.getItem(EXIT_SURVEY_KEY) === 'true';
-        }
-        
-        function markSurveySeen() {
-            localStorage.setItem(EXIT_SURVEY_KEY, 'true');
-        }
-        
-        function getSurveyResponses() {
-            const stored = localStorage.getItem(EXIT_SURVEY_RESPONSES_KEY);
-            return stored ? JSON.parse(stored) : [];
-        }
-        
-        function saveSurveyResponse(response) {
-            const responses = getSurveyResponses();
-            responses.push({
-                ...response,
-                timestamp: new Date().toISOString()
-            });
-            localStorage.setItem(EXIT_SURVEY_RESPONSES_KEY, JSON.stringify(responses));
-            console.log('Exit survey response saved:', response);
-        }
-        
-        function showExitSurvey() {
-            if (hasSeenExitSurvey()) return;
-            
-            const surveyModal = document.getElementById('exit-survey-modal');
-            if (surveyModal) {
-                surveyModal.style.display = 'flex';
-                markSurveySeen();
-            }
-        }
-        
-        function hideExitSurvey() {
-            const surveyModal = document.getElementById('exit-survey-modal');
-            const recoveryOffer = document.getElementById('recovery-offer-modal');
-            if (surveyModal) surveyModal.style.display = 'none';
-            if (recoveryOffer) recoveryOffer.style.display = 'none';
-        }
-        
-        function showRecoveryOffer(objection) {
-            hideExitSurvey();
-            
-            const recoveryOffer = document.getElementById('recovery-offer-modal');
-            const offerContent = document.getElementById('recovery-offer-content');
-            const offerCta = document.getElementById('recovery-offer-cta');
-            
-            if (!recoveryOffer || !offerContent || !offerCta) return;
-            
-            const offers = {
-                'too-expensive': {
-                    title: 'Special Offer — Starter Plan',
-                    message: 'We understand budget is a concern. Here\'s an exclusive deal for you:',
-                    cta: 'Get Starter at $99/mo',
-                    ctaLink: '#contact'
-                },
-                'not-sure': {
-                    title: 'Risk-Free Guarantee',
-                    message: 'Not sure it works? Here\'s what past clients say:',
-                    cta: 'Book Free Consultation',
-                    ctaLink: '#contact'
-                },
-                'need-features': {
-                    title: 'Let\'s Find the Right Fit',
-                    message: 'Every business is unique. Let\'s discuss your specific needs:',
-                    cta: 'Talk to an Expert',
-                    ctaLink: '#contact'
-                },
-                'just-browsing': {
-                    title: 'No Pressure',
-                    message: 'We get it — you\'re just browsing. Here\'s what makes us different:',
-                    cta: 'Learn More',
-                    ctaLink: '#services'
-                },
-                'other': {
-                    title: 'We\'d Love to Help',
-                    message: 'Tell us more about what you need. We\'re here to help:',
-                    cta: 'Get in Touch',
-                    ctaLink: '#contact'
-                }
-            };
-            
-            const offer = offers[objection] || offers['other'];
-            offerContent.innerHTML = `<h3>${offer.title}</h3><p>${offer.message}</p>`;
-            offerCta.href = offer.ctaLink;
-            offerCta.textContent = offer.cta;
-            
-            recoveryOffer.style.display = 'flex';
-        }
-        
-        function submitSurvey() {
-            const objection = document.getElementById('objection-select')?.value;
-            const priceChange = document.querySelector('input[name="price-change"]:checked')?.value;
-            
-            if (!objection) {
-                alert('Please select an option');
-                return;
-            }
-            
-            const response = {
-                objection: objection,
-                priceChange: priceChange || 'no-response',
-                page: window.location.href,
-                url: 'hasenagency.site'
-            };
-            
-            saveSurveyResponse(response);
-            showRecoveryOffer(objection);
-        }
-        
-        // Exit intent detection
-        let exitIntentTriggered = false;
-        
-        document.addEventListener('mouseleave', (e) => {
-            if (e.clientY <= 0 && !exitIntentTriggered) {
-                exitIntentTriggered = true;
-                showExitSurvey();
-            }
-        });
-        
-        // Also trigger on beforeunload as backup (shows less obtrusively)
-        let showedBeforeUnload = false;
-        window.addEventListener('beforeunload', (e) => {
-            if (!hasSeenExitSurvey() && !showedBeforeUnload) {
-                showedBeforeUnload = true;
-            }
-        });
-
-        // Book a Call: prompt email, save, redirect to cal.com
+        // Book a Call email capture
         function bookCallEmail(e) {
             e.preventDefault();
             const email = prompt('Enter your email to book a call:');
-            if (!email || !email.includes('@')) {
-                alert('Please enter a valid email.');
-                return;
+            if (!email || !email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email.'); return;
             }
-            // Save locally (optional: POST to endpoint here)
             localStorage.setItem('hasen_booking_email', email);
-            // Redirect to cal.com with prefilled email
             window.location.href = 'https://cal.com/hasen-agency-e093mw/15min?email=' + encodeURIComponent(email);
         }
     </script>
-    
-    <!-- Exit Survey Modal -->
-    <div id="exit-survey-modal" style="
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.8);
-        backdrop-filter: blur(10px);
-        z-index: 1000;
-        align-items: center;
-        justify-content: center;
-    ">
-        <div style="
-            background: #141414;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-        ">
-            <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; margin-bottom: 8px;">
-                Wait! Before You Go...
-            </h3>
-            <p style="color: #a1a1aa; margin-bottom: 32px;">
-                Help us understand — what would make this work for you?
-            </p>
-            
-            <div style="margin-bottom: 24px; text-align: left;">
-                <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.95rem;">
-                    What's holding you back?
-                </label>
-                <select id="objection-select" style="
-                    width: 100%;
-                    padding: 12px 16px;
-                    background: #0a0a0a;
-                    border: 1px solid rgba(255,255,255,0.1);
-                    border-radius: 8px;
-                    color: #fafafa;
-                    font-size: 1rem;
-                    cursor: pointer;
-                ">
-                    <option value="">Select an option...</option>
-                    <option value="too-expensive">Too expensive</option>
-                    <option value="need-features">Need more features</option>
-                    <option value="not-sure">Not sure it works</option>
-                    <option value="just-browsing">Just browsing</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            
-            <div style="margin-bottom: 32px; text-align: left;">
-                <label style="display: block; margin-bottom: 12px; font-weight: 600; font-size: 0.95rem;">
-                    Would $99/mo change your mind?
-                </label>
-                <div style="display: flex; gap: 16px;">
-                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                        <input type="radio" name="price-change" value="yes" style="accent-color: #7c3aed;">
-                        <span>Yes</span>
-                    </label>
-                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                        <input type="radio" name="price-change" value="no" style="accent-color: #7c3aed;">
-                        <span>No</span>
-                    </label>
-                </div>
-            </div>
-            
-            <div style="display: flex; gap: 12px;">
-                <button onclick="hideExitSurvey()" style="
-                    flex: 1;
-                    padding: 12px 24px;
-                    background: transparent;
-                    border: 1px solid rgba(255,255,255,0.1);
-                    border-radius: 8px;
-                    color: #a1a1aa;
-                    font-weight: 600;
-                    cursor: pointer;
-                ">
-                    No thanks
-                </button>
-                <button onclick="submitSurvey()" style="
-                    flex: 1;
-                    padding: 12px 24px;
-                    background: linear-gradient(135deg, #7c3aed, #a855f7);
-                    border: none;
-                    border-radius: 8px;
-                    color: white;
-                    font-weight: 600;
-                    cursor: pointer;
-                ">
-                    Continue
-                </button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Recovery Offer Modal -->
-    <div id="recovery-offer-modal" style="
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.8);
-        backdrop-filter: blur(10px);
-        z-index: 1000;
-        align-items: center;
-        justify-content: center;
-    ">
-        <div style="
-            background: #141414;
-            border: 1px solid #7c3aed;
-            border-radius: 16px;
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 0 60px rgba(124, 58, 237, 0.3);
-        ">
-            <div id="recovery-offer-content" style="margin-bottom: 32px;">
-                <!-- Dynamic content -->
-            </div>
-            <a id="recovery-offer-cta" href="#contact" class="btn btn-primary" style="
-                display: inline-block;
-                padding: 14px 32px;
-                font-size: 1rem;
-            ">
-                Get Started
-            </a>
-            <button onclick="hideExitSurvey()" style="
-                display: block;
-                margin: 16px auto 0;
-                background: none;
-                border: none;
-                color: #666;
-                cursor: pointer;
-                font-size: 0.9rem;
-            ">
-                No thanks, take me back
-            </button>
-        </div>
-    </div>
 </body>
 </html>
