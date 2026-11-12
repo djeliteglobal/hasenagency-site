@@ -21,7 +21,7 @@ export default {
     // Reply via Twilio
     const twilioResp = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Message>${escapeXml(aiResponse)}</Message>
+  <Message>${escapeXml(trimNimOutput(aiResponse))}</Message>
 </Response>`;
 
     return new Response(twilioResp, { headers: { 'Content-Type': 'text/xml' } });
@@ -76,6 +76,24 @@ function fallbackPlan() {
 Reply with: business type, calls/day, avg patient value, booking system. I'll send your custom recovery numbers.`;
 }
 
-function escapeXml(str) {
-  return str.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>').replace(/"/g, '"').replace(/'/g, '&apos;');
+const MAX_MESSAGE_CHARS = 1600;
+
+function trimNimOutput(s) {
+  if (!s) return '';
+  const cleaned = String(s).trim();
+  if (cleaned.length <= MAX_MESSAGE_CHARS) return cleaned;
+  const slice = cleaned.slice(0, MAX_MESSAGE_CHARS);
+  const match = slice.match(/[\s\S]*[.!?](?=\s|$)/);
+  return (match ? match[0] : slice).trim();
+}
+
+function escapeXml(s) {
+  if (!s) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+    .replace(/[<>]/g, '');
 }
