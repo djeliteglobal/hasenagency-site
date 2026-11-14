@@ -36,6 +36,8 @@
 3. FOLLOW-UP: reminders cut no-shows</textarea>
 
 <button id="send">Send test POST</button>
+<button id="ping" style="background:#4ade80;color:#111;">Send test ping</button>
+<p style="font-size:12px;color:#888;margin-top:10px;">Ping uses the URL above. Against the local harness it replays the simulated NIM text; against the deployed worker it calls the real NIM API (costs money) and the simulated text is ignored — the deployed worker has no <code>__test_nim</code> hook.</p>
 <h1 style="margin-top:24px">Result</h1>
 <pre id="out">—</pre>
 
@@ -59,11 +61,11 @@ document.getElementById('send').onclick = async () => {
   fd.append('From', 'whatsapp:+5521999340899');
   fd.append('Body', document.getElementById('body').value);
   fd.append('MessageSid', 'SM_test_' + Date.now());
-  fd.append('__test_nim', document.getElementById('nim').value);
+  if (isLocal()) fd.append('__test_nim', document.getElementById('nim').value);
   try {
     const r = await fetch(document.getElementById('url').value, { method: 'POST', body: fd });
     const t = await r.text();
-    const badAmp = /&(?!(amp|lt|gt|quot|apos|#)/.test(t);
+    const badAmp = /&(?!(amp|lt|gt|quot|apos|#))/.test(t);
     const badTag = /<(?!\/?(Response|Message)\b|\?xml)/.test(t);
     out.innerHTML = '';
     out.append(`status ${r.status}\n\n`);
@@ -77,6 +79,39 @@ document.getElementById('send').onclick = async () => {
     out.className = 'bad';
   }
 };
+
+function isLocal() {
+  const u = document.getElementById('url').value;
+  return u.includes('localhost') || u.includes('127.0.0.1');
+}
+
+document.getElementById('ping').onclick = async () => {
+  const out = document.getElementById('out');
+  const url = document.getElementById('url').value;
+  if (!isLocal() && !confirm('This URL is not the local harness.\n\nIt will call the real NIM API (costs money) and the deployed worker ignores the simulated NIM text.\n\nContinue?')) {
+    out.textContent = 'cancelled';
+    out.className = '';
+    return;
+  }
+  out.textContent = 'firing test ping...';
+  const fd = new FormData();
+  fd.append('From', 'whatsapp:+5521999340899');
+  fd.append('Body', 'SAVE');
+  fd.append('MessageSid', 'SM_ping_' + Date.now());
+  try {
+    const r = await fetch(url, { method: 'POST', body: fd });
+    const t = await r.text();
+    const m = t.match(/<Message>([\s\S]*?)<\/Message>/);
+    out.textContent = m
+      ? 'ping ok (status ' + r.status + ') — message that would land in WhatsApp:\n\n' + m[1]
+      : 'no <Message> in response — did the worker skip SAVE?\n\n' + t;
+    out.className = m ? 'ok' : 'bad';
+  } catch (e) {
+    out.textContent = 'error: ' + e;
+    out.className = 'bad';
+  }
+};
+
 </script>
 </body>
 </html>
